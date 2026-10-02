@@ -14,14 +14,13 @@ const FS: Record<string, { dirs: string[]; files: Record<string, string> }> = {
       "README.md": `pdev-labs — systems developer, 16 · 21 public repos · type "projects" or "help"`,
       "skills.txt": `Shell · Python · C/C++ · ESP32-S3 · Extensions · PyPI · Next.js`,
       "contact.txt": `github.com/pdev-labs · pdev.labs@gmail.com · instagram: pdev_labs`,
-      "journey.txt": `Jun 2026 FluxMedia → Jul account + systems streak → Sep embedded + pdev`,
+      "journey.txt": `Jun 2026 FluxMedia → Jul account + systems streak → Sep embedded systems`,
     },
   },
   "~/projects": {
     dirs: [],
     files: {
       "linux-for-android.md": `Multi-distro Linux on Android via Termux. VirGL 3D, SSH, portable exports. ★3 — "open linux"`,
-      "pdev.md": `Hinglish programming language in Python. likho("namaste") — "open pdev"`,
       "fluxmedia.md": `PyPI package + LAN QR share portal. ★2 — "open flux"`,
       "nanonas-s3.md": `ESP32-S3 NAS firmware. Chunked copy, Material UI. — "open nano"`,
       "polystream.md": `Multi-tab video enabler for Firefox + Chrome. — "open poly"`,
@@ -32,8 +31,8 @@ const FS: Record<string, { dirs: string[]; files: Record<string, string> }> = {
 
 const COMMANDS = [
   "help", "ls", "cd", "pwd", "cat", "whoami", "about", "skills", "projects",
-  "experience", "journey", "services", "contact", "socials", "open", "pdev",
-  "likho", "banner", "neofetch", "stats", "date", "echo", "history", "hire", "theme", "font", "email", "instagram",
+  "experience", "journey", "services", "contact", "socials", "open",
+  "banner", "neofetch", "stats", "date", "echo", "history", "hire", "theme", "font", "email", "instagram",
   "resume", "joke", "matrix", "clear",
 ];
 
@@ -44,8 +43,8 @@ const BOOT: Line[] = [
 const HELP = [
   `<span class="t-kw">Files:</span> ls · cd projects · pwd · cat &lt;file&gt;`,
   `<span class="t-kw">Profile:</span> whoami · about · skills · experience · journey · services · contact · socials`,
-  `<span class="t-kw">Work:</span> projects · open &lt;linux|pdev|flux|nano|poly|step&gt; · stats · resume · hire`,
-  `<span class="t-kw">Fun:</span> pdev · likho "…" · banner · neofetch · joke · matrix · echo · date · history · clear`,
+  `<span class="t-kw">Work:</span> projects · open &lt;linux|flux|nano|poly|step&gt; · stats · resume · hire`,
+  `<span class="t-kw">Fun:</span> banner · neofetch · joke · matrix · echo · date · history · clear`,
   `<span class="t-kw">Display:</span> theme &lt;light|dark|system&gt; · font +|-|reset (site theme + terminal size)`,
 ].join("<br>");
 
@@ -53,7 +52,6 @@ const JOKES = [
   `Why do programmers prefer dark mode? Because light attracts bugs.`,
   `I told my SSD a joke… it couldn't handle the cache-back.`,
   `ESP32 walked into a bar. Bartender: "We don't serve your type here." ESP32: "That's fine, I'm NOMMU."`,
-  `My Hinglish compiler's favourite line? "likho, mat socho."`,
 ];
 
 function esc(s: string) {
@@ -201,8 +199,8 @@ export default function LabConsole() {
       case "whoami": out = [{ html: `pdev-labs — 16, open-source systems developer · Linux · ESP32 · Python` }]; break;
       case "about": out = [{ html: `Student + maintainer. 21 public repos, docs-first, hardware-tested. India · remote worldwide.` }]; break;
       case "skills": out = [{ html: `Systems & OS (adv) · Embedded (int) · Python (adv) · Web (int) — full list in <span class="t-kw">#expertise</span>` }]; break;
-      case "experience": out = [{ html: `Building since Jul 2026 · pdev language designer · ESP32-S3 builder — see <span class="t-kw">#experience</span>` }]; break;
-      case "journey": out = [{ html: `Jun 2026 first repos → Jul systems streak → Sep embedded + pdev. Full story below.` }]; break;
+      case "experience": out = [{ html: `Building since Jul 2026 · ESP32-S3 builder · Linux on Android — see <span class="t-kw">#experience</span>` }]; break;
+      case "journey": out = [{ html: `Jun 2026 first repos → Jul systems streak → Sep embedded systems. Full story below.` }]; break;
       case "services": out = [{ html: `CLI tooling · PyPI packages · ESP32 prototypes — <span class="t-kw">hire</span> for details.` }]; break;
       case "hire": out = [{ html: `Open to collabs + internships. Fastest: <span class="t-fn">github.com/pdev-labs</span> (48h reply).`, open: "https://github.com/pdev-labs" }]; break;
       case "socials": case "contact":
@@ -214,7 +212,7 @@ export default function LabConsole() {
       case "resume":
         out = [{ html: `Resume = this site + GitHub. Start: <span class="t-fn">github.com/pdev-labs?tab=repositories</span>`, open: "https://github.com/pdev-labs?tab=repositories" }]; break;
       case "projects": case "ls": {
-        if (c === "projects") { out = [{ html: `★ Linux-For-Android · pdev (.pl) · FluxMedia ★2 · NanoNAS-S3 · Polystream · StepSnap — <span class="t-cm">cd projects + ls, or "open pdev"</span>` }]; break; }
+        if (c === "projects") { out = [{ html: `★ Linux-For-Android · FluxMedia ★2 · NanoNAS-S3 · Polystream · StepSnap — <span class="t-cm">cd projects + ls, or "open linux"</span>` }]; break; }
         const target = args[0] ? resolve(args[0].replace(/\/$/, ""), cwd) : cwd;
         if (target === null || !FS[target]) { out = [{ html: `ls: no such directory: <span class="t-str">${esc(args[0])}</span>` }]; break; }
         const d = FS[target];
@@ -238,27 +236,21 @@ export default function LabConsole() {
       case "open": {
         const map: Record<string, string> = {
           linux: "https://github.com/pdev-labs/Linux-For-Android", "linux-for-android": "https://github.com/pdev-labs/Linux-For-Android",
-          pdev: "https://github.com/pdev-labs/pdev", flux: "https://github.com/pdev-labs/FluxMedia", fluxmedia: "https://github.com/pdev-labs/FluxMedia",
+          flux: "https://github.com/pdev-labs/FluxMedia", fluxmedia: "https://github.com/pdev-labs/FluxMedia",
           nano: "https://github.com/pdev-labs/NanoNAS-S3", poly: "https://github.com/pdev-labs/polystream",
           step: "https://github.com/pdev-labs/StepSnap", github: "https://github.com/pdev-labs",
         };
         const key = Object.keys(map).find(k => arg.toLowerCase().includes(k)) || (arg === "" ? "github" : "");
         out = !key
-          ? [{ html: `unknown project. try: <span class="t-kw">open pdev</span> · <span class="t-kw">open linux</span> · <span class="t-kw">open flux</span>` }]
+          ? [{ html: `unknown project. try: <span class="t-kw">open linux</span> · <span class="t-kw">open flux</span> · <span class="t-kw">open nano</span>` }]
           : [{ html: `opening <span class="t-fn">${map[key]}</span> …`, open: map[key] }];
         break;
       }
-      case "pdev":
-        out = [
-          { html: `<span class="t-kw">likho</span> <span class="t-str">"system banao, bahana nahi"</span>` },
-          { html: `<span class="t-prompt">➜</span> system banao, bahana nahi` },
-        ];
-        break;
       case "banner":
         out = [{ html: `<span class="t-kw">██████╗ ██████╗ ███████╗██╗   ██╗</span><br><span class="t-kw">██╔══██╗██╔══██╗██╔════╝██║   ██║</span><br><span class="t-kw">██████╔╝██║  ██║█████╗  ██║   ██║</span><br><span class="t-cm">systems over slides — github.com/pdev-labs</span>` }];
         break;
       case "neofetch":
-        out = [{ html: `<span class="t-fn">pdev</span>@lab<br>OS: Termux + Arch btw<br>Board: ESP32-S3<br>Lang: Hinglish (.pl)<br>Repos: 21 public<br>Uptime: since Jul 2026` }];
+        out = [{ html: `<span class="t-fn">pdev</span>@lab<br>OS: Termux + Arch btw<br>Board: ESP32-S3<br>Repos: 21 public<br>Uptime: since Jul 2026` }];
         break;
       case "stats":
         out = live
@@ -307,8 +299,7 @@ export default function LabConsole() {
       case "hack":
         out = [{ html: `hacking… <span class="t-fn">100%</span> — just kidding. Real hacking = <span class="t-kw">open linux</span> + read the code.` }]; break;
       default:
-        if (c.startsWith("likho")) out = [{ html: `<span class="t-prompt">➜</span> ${esc(args.join(" ") || "namaste!")}` }];
-        else out = [{ html: `not found: <span class="t-str">${esc(c)}</span> — try <span class="t-kw">help</span>` }];
+        out = [{ html: `not found: <span class="t-str">${esc(c)}</span> — try <span class="t-kw">help</span>` }];
     }
     if (newCwd !== null) setCwd(newCwd);
     setLines(prev => [...prev, echo, ...out]);
@@ -376,12 +367,12 @@ export default function LabConsole() {
             <form className="t-input-row" onSubmit={(e) => { e.preventDefault(); run(value); setValue(""); }}>
               <span className="t-ps1" aria-hidden="true"><span className="t-fn">pdev@lab</span><span className="t-cm">:</span><span className="t-kw">{cwd}</span><span className="t-cm">$</span></span>
               <input ref={inputRef} className="t-input" style={{ fontSize: `${termFont}px` }} value={value} onChange={(e) => setValue(e.target.value)}
-                onKeyDown={onKey} placeholder='help · ls · open pdev' aria-label="Terminal command input"
+                onKeyDown={onKey} placeholder='help · ls · open linux' aria-label="Terminal command input"
                 autoComplete="off" autoCapitalize="off" spellCheck={false} />
             </form>
         </div>
 {showJump && <button type="button" className="lab-jump" onClick={jumpLatest}>↓ latest</button>}
-        <div className="lab-foot"><span>utf-8 · pdev 0.3 · help, projects, neofetch</span><span>● live</span></div>
+        <div className="lab-foot"><span>utf-8 · lab 2.0 · help, projects, neofetch</span><span>● live</span></div>
         <span className="lab-resize" aria-hidden="true" />
       </div>
     </div>

@@ -11,14 +11,14 @@ const SITE_URL = "https://www.pdevlabs.jo3.org";
 
 export const metadata: Metadata = {
   title: "pdev-labs — Systems builder, 16",
-  description: "16-year-old student building Linux-on-Android tools, ESP32 systems, Python utilities and pdev, a Hinglish programming language. 21 public repos.",
-  keywords: ["pdev-labs", "portfolio", "Linux on Android", "ESP32", "Python", "Hinglish programming"],
+  description: "16-year-old student building Linux-on-Android tools, ESP32 systems, and Python utilities. 21 public repos.",
+  keywords: ["pdev-labs", "portfolio", "Linux on Android", "ESP32", "Python"],
   authors: [{ name: "pdev-labs", url: "https://github.com/pdev-labs" }],
   creator: "pdev-labs",
   alternates: { canonical: SITE_URL },
   openGraph: {
     title: "pdev-labs — builds OS tools, firmware & Python utilities",
-    description: "Linux-For-Android · pdev Hinglish language · FluxMedia · ESP32 systems",
+    description: "Linux-For-Android · FluxMedia · ESP32 systems",
     type: "website",
     url: SITE_URL,
   },

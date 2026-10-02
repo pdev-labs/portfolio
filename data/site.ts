@@ -3,7 +3,7 @@ export const PROFILE = {
   displayName: "Pdev",
   role: "Open-source systems developer",
   tagline: "Reliable OS tools, firmware, and Python utilities — documented, tested, maintained.",
-  bio: "16-year-old student and open-source maintainer. I build practical systems software: Linux on Android, ESP32 firmware, LAN media tools, and pdev — a Hinglish programming language for first-time coders. My focus is small, dependable tools with clear docs and real users.",
+  bio: "16-year-old student and open-source maintainer. I build practical systems software: Linux on Android, ESP32 firmware, and LAN media tools. My focus is small, dependable tools with clear docs and real users.",
   github: "https://github.com/pdev-labs",
   email: "pdev.labs@gmail.com",
   instagram: "https://instagram.com/pdev_labs",
@@ -39,19 +39,6 @@ export const PROJECTS: Project[] = [
     year: "2026",
     status: "Actively maintained",
     outcome: "6 distros · VirGL + SSH · portable backups",
-    featured: true,
-  },
-  {
-    slug: "pdev-lang",
-    title: "pdev — Hinglish programming language",
-    blurb: "A gentle first language in Python. Write likho(\"namaste\"), run, learn. Hindi-English keywords, instant feedback, and worked examples for classrooms.",
-    language: "Python",
-    stars: 0,
-    url: "https://github.com/pdev-labs/pdev",
-    tags: ["Language design", "Education", "Python"],
-    year: "2026",
-    status: "Maintained",
-    outcome: "Classroom-ready examples · GPLv3",
     featured: true,
   },
   {
@@ -153,7 +140,7 @@ export const EXPERIENCE = [
     role: "Embedded & language design",
     org: "ESP32-S3 · education",
     period: "Sep 2026",
-    points: ["ESP32-S3 streak: NanoNAS-S3 firmware (C++), NOMMU Linux experiment, Needle tooling, Lazy-ESP32 helpers, StepSnap.", "Designed pdev (.pl), a Hinglish programming language in Python (GPLv3) for first-time coders.", "Shipped Polystream, a multi-tab video extension for Firefox and Chrome (latest push)."],
+    points: ["ESP32-S3 streak: NanoNAS-S3 firmware (C++), NOMMU Linux experiment, Needle tooling, Lazy-ESP32 helpers, StepSnap.", "Shipped Polystream, a multi-tab video extension for Firefox and Chrome (latest push)."],
   },
 ];
 
@@ -170,7 +157,7 @@ export const PROCESS = [
 ];
 
 export const JOURNEY = [
-  { year: "Sep 2026", title: "Embedded + language", text: "ESP32-S3 systems (NanoNAS, NOMMU Linux), pdev Hinglish language, Polystream extension, StepSnap." },
+  { year: "Sep 2026", title: "Embedded systems", text: "ESP32-S3 systems (NanoNAS, NOMMU Linux), Polystream extension, StepSnap." },
   { year: "Jul 2026", title: "Systems streak", text: "Account opened Jul 7. Python media tools → Linux-For-Android (★3), Termux distros, RDP lab, controller." },
   { year: "Jun 2026", title: "First repos", text: "Started with FluxMedia (Python, ★2) — LAN sharing and media playback that later hit PyPI." },
 ];

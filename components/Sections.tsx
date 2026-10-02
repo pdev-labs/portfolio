@@ -22,7 +22,7 @@ export function Hero() {
       </div>
       <div>
         <LabConsole />
-        <p className="lab-caption">Featured: <strong>pdev (.pl)</strong> — Hinglish language for first-time coders. <a href="https://github.com/pdev-labs/pdev" target="_blank" rel="noreferrer">Read the source ↗</a></p>
+        <p className="lab-caption">Featured: <strong>Linux-For-Android</strong> — multi-distro Linux on Android via Termux. <a href="https://github.com/pdev-labs/Linux-For-Android" target="_blank" rel="noreferrer">Read the source ↗</a></p>
       </div>
     </div>
   );
@@ -32,7 +32,7 @@ export function CredibilityBar() {
   const items = [
     { k: "Linux-For-Android", v: "multi-distro · VirGL" },
     { k: "FluxMedia", v: "published on PyPI" },
-    { k: "pdev language", v: "GPLv3 · education" },
+    { k: "Controller", v: "phone as gamepad" },
     { k: "ESP32-S3", v: "NAS + Linux research" },
   ];
   return (
@@ -72,7 +72,7 @@ export function About() {
             <li>Ship working code plus a setup guide tested clean</li>
             <li>Triage issues, keep releases noted, state limits honestly</li>
           </ul>
-          <p className="muted" style={{ marginTop: 12 }}>Currently hardening the Linux-For-Android boot manager, expanding pdev examples, and preparing FluxMedia 2.x.</p>
+          <p className="muted" style={{ marginTop: 12 }}>Currently hardening the Linux-For-Android boot manager and preparing FluxMedia 2.x.</p>
         </div>
       </div>
     </div>
