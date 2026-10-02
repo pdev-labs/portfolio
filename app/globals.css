@@ -282,7 +282,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--ink-soft
 [data-theme="dark"] .nav-links a.btn-primary{background:#f1edfa;color:#14101d}
 [data-theme="dark"] .nav-links a.btn-primary:hover{background:#fff;color:#14101d}
 [data-theme="dark"] .brand-mark{background:#f1edfa;color:#14101d}
-[data-theme="dark"] .github-btn{background:#f1edfa;color:#14101d;border:1px solid #f1edfa}
+[data-theme="dark"] .github-btn{background:#221d38;color:#fff;border:1px solid #3d3570}
 [data-theme="dark"] .github-btn:hover{background:var(--ultra);border-color:var(--ultra);color:#fff}
 [data-theme="dark"] .chip.lang{background:#f1edfa;border-color:#f1edfa;color:#14101d}
 [data-theme="dark"] .proc-n{background:#f1edfa;color:#14101d}
