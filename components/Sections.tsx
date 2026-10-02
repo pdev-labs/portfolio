@@ -182,7 +182,7 @@ export function Contact() {
           </ul>
           <div className="contact-actions">
             <a className="btn btn-light" href="mailto:pdev.labs@gmail.com">Email me ↗</a>
-            <button type="button" className="btn btn-outline-light" data-copy="https://www.pdevlabs.jo3.org" data-label="Page link">Copy page link ⧉</button>
+            <button type="button" className="btn btn-outline-light" data-copy="https://pdev-labs.vercel.app" data-label="Page link">Copy page link ⧉</button>
             <a className="btn btn-outline-light" href="https://github.com/pdev-labs/Linux-For-Android" target="_blank" rel="noreferrer">Try Linux-For-Android</a>
           </div>
         </div>

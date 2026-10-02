@@ -7,7 +7,7 @@ const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-disp
 const body = Space_Grotesk({ subsets: ["latin"], variable: "--font-body", display: "swap" });
 const code = JetBrains_Mono({ subsets: ["latin"], variable: "--font-code", display: "swap" });
 
-const SITE_URL = "https://www.pdevlabs.jo3.org";
+const SITE_URL = "https://pdev-labs.vercel.app";
 
 export const metadata: Metadata = {
   title: "pdev-labs — Systems builder, 16",
