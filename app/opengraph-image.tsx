@@ -11,7 +11,7 @@ export default function OG() {
         <div style={{ fontSize: 76, fontWeight: 800, lineHeight: 1.05, margin: "16px 0" }}>
           OS tools, firmware &amp; Python utilities.
         </div>
-        <div style={{ fontSize: 30, color: "#b3abd0" }}>Linux-For-Android · FluxMedia · ESP32</div>
+        <div style={{ fontSize: 30, color: "#b3abd0" }}>Linux-For-Android · Lazy-ESP32 · FluxMedia</div>
       </div>
     ),
     { ...size }

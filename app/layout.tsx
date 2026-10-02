@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   alternates: { canonical: SITE_URL },
   openGraph: {
     title: "pdev-labs — builds OS tools, firmware & Python utilities",
-    description: "Linux-For-Android · FluxMedia · ESP32 systems",
+    description: "Linux-For-Android · Lazy-ESP32 · FluxMedia · ESP32 systems",
     type: "website",
     url: SITE_URL,
   },

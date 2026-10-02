@@ -21,6 +21,7 @@ const FS: Record<string, { dirs: string[]; files: Record<string, string> }> = {
     dirs: [],
     files: {
       "linux-for-android.md": `Multi-distro Linux on Android via Termux. VirGL 3D, SSH, portable exports. ★3 — "open linux"`,
+      "lazy-esp32.md": `Zero-config ESP32 toolkit: USB/OTA flash, partitions, web assets. — "open lazy"`,
       "fluxmedia.md": `PyPI package + LAN QR share portal. ★2 — "open flux"`,
       "nanonas-s3.md": `ESP32-S3 NAS firmware. Chunked copy, Material UI. — "open nano"`,
       "polystream.md": `Multi-tab video enabler for Firefox + Chrome. — "open poly"`,
@@ -43,7 +44,7 @@ const BOOT: Line[] = [
 const HELP = [
   `<span class="t-kw">Files:</span> ls · cd projects · pwd · cat &lt;file&gt;`,
   `<span class="t-kw">Profile:</span> whoami · about · skills · experience · journey · services · contact · socials`,
-  `<span class="t-kw">Work:</span> projects · open &lt;linux|flux|nano|poly|step&gt; · stats · resume · hire`,
+  `<span class="t-kw">Work:</span> projects · open &lt;linux|lazy|flux|nano|poly|step&gt; · stats · resume · hire`,
   `<span class="t-kw">Fun:</span> banner · neofetch · joke · matrix · echo · date · history · clear`,
   `<span class="t-kw">Display:</span> theme &lt;light|dark|system&gt; · font +|-|reset (site theme + terminal size)`,
 ].join("<br>");
@@ -212,7 +213,7 @@ export default function LabConsole() {
       case "resume":
         out = [{ html: `Resume = this site + GitHub. Start: <span class="t-fn">github.com/pdev-labs?tab=repositories</span>`, open: "https://github.com/pdev-labs?tab=repositories" }]; break;
       case "projects": case "ls": {
-        if (c === "projects") { out = [{ html: `★ Linux-For-Android · FluxMedia ★2 · NanoNAS-S3 · Polystream · StepSnap — <span class="t-cm">cd projects + ls, or "open linux"</span>` }]; break; }
+        if (c === "projects") { out = [{ html: `★ Linux-For-Android · Lazy-ESP32 · FluxMedia ★2 · NanoNAS-S3 · Polystream · StepSnap — <span class="t-cm">cd projects + ls, or "open lazy"</span>` }]; break; }
         const target = args[0] ? resolve(args[0].replace(/\/$/, ""), cwd) : cwd;
         if (target === null || !FS[target]) { out = [{ html: `ls: no such directory: <span class="t-str">${esc(args[0])}</span>` }]; break; }
         const d = FS[target];
@@ -236,13 +237,14 @@ export default function LabConsole() {
       case "open": {
         const map: Record<string, string> = {
           linux: "https://github.com/pdev-labs/Linux-For-Android", "linux-for-android": "https://github.com/pdev-labs/Linux-For-Android",
+          lazy: "https://github.com/pdev-labs/Lazy-ESP32", "lazy-esp32": "https://github.com/pdev-labs/Lazy-ESP32",
           flux: "https://github.com/pdev-labs/FluxMedia", fluxmedia: "https://github.com/pdev-labs/FluxMedia",
           nano: "https://github.com/pdev-labs/NanoNAS-S3", poly: "https://github.com/pdev-labs/polystream",
           step: "https://github.com/pdev-labs/StepSnap", github: "https://github.com/pdev-labs",
         };
         const key = Object.keys(map).find(k => arg.toLowerCase().includes(k)) || (arg === "" ? "github" : "");
         out = !key
-          ? [{ html: `unknown project. try: <span class="t-kw">open linux</span> · <span class="t-kw">open flux</span> · <span class="t-kw">open nano</span>` }]
+          ? [{ html: `unknown project. try: <span class="t-kw">open lazy</span> · <span class="t-kw">open linux</span> · <span class="t-kw">open flux</span>` }]
           : [{ html: `opening <span class="t-fn">${map[key]}</span> …`, open: map[key] }];
         break;
       }

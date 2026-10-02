@@ -42,6 +42,19 @@ export const PROJECTS: Project[] = [
     featured: true,
   },
   {
+    slug: "lazy-esp32",
+    title: "Lazy-ESP32",
+    blurb: "Zero-config interactive Python CLI wrapping arduino-cli and esptool — compile, flash over USB/OTA, manage partitions, convert web assets, and monitor serial for ESP32.",
+    language: "Python",
+    stars: 0,
+    url: "https://github.com/pdev-labs/Lazy-ESP32",
+    tags: ["ESP32", "Embedded", "Python"],
+    year: "2026",
+    status: "Maintained",
+    outcome: "USB + OTA · partition manager",
+    featured: true,
+  },
+  {
     slug: "fluxmedia",
     title: "FluxMedia",
     blurb: "Published PyPI package with a LAN QR-share portal and rich media player. Share and play across devices on the same network with zero configuration.",
@@ -137,10 +150,10 @@ export const EXPERIENCE = [
     points: ["Linux-on-Android track: ubuntu-for-termux, Arch installer configs, dynamic boot manager work.", "Actions RDP lab: GUI desktops inside GitHub Actions runners for app testing across Linux, Windows, macOS.", "Controller (phone as gamepad/trackpad over Wi-Fi, active through Sep) plus media utilities later folded into FluxMedia."],
   },
   {
-    role: "Embedded & language design",
-    org: "ESP32-S3 · education",
+    role: "Embedded systems",
+    org: "ESP32-S3 · firmware tools",
     period: "Sep 2026",
-    points: ["ESP32-S3 streak: NanoNAS-S3 firmware (C++), NOMMU Linux experiment, Needle tooling, Lazy-ESP32 helpers, StepSnap.", "Shipped Polystream, a multi-tab video extension for Firefox and Chrome (latest push)."],
+    points: ["ESP32-S3 streak: NanoNAS-S3 firmware (C++), NOMMU Linux experiment, Needle tooling, Lazy-ESP32 toolkit, StepSnap.", "Shipped Polystream, a multi-tab video extension for Firefox and Chrome (latest push)."],
   },
 ];
 
@@ -157,7 +170,7 @@ export const PROCESS = [
 ];
 
 export const JOURNEY = [
-  { year: "Sep 2026", title: "Embedded systems", text: "ESP32-S3 systems (NanoNAS, NOMMU Linux), Polystream extension, StepSnap." },
+  { year: "Sep 2026", title: "Embedded systems", text: "ESP32-S3 systems (NanoNAS, NOMMU Linux), Lazy-ESP32 toolkit, Polystream extension, StepSnap." },
   { year: "Jul 2026", title: "Systems streak", text: "Account opened Jul 7. Python media tools → Linux-For-Android (★3), Termux distros, RDP lab, controller." },
   { year: "Jun 2026", title: "First repos", text: "Started with FluxMedia (Python, ★2) — LAN sharing and media playback that later hit PyPI." },
 ];

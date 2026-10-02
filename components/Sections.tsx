@@ -22,7 +22,7 @@ export function Hero() {
       </div>
       <div>
         <LabConsole />
-        <p className="lab-caption">Featured: <strong>Linux-For-Android</strong> — multi-distro Linux on Android via Termux. <a href="https://github.com/pdev-labs/Linux-For-Android" target="_blank" rel="noreferrer">Read the source ↗</a></p>
+        <p className="lab-caption">Featured: <strong>Lazy-ESP32</strong> — zero-config ESP32 flash toolkit. <a href="https://github.com/pdev-labs/Lazy-ESP32" target="_blank" rel="noreferrer">Read the source ↗</a></p>
       </div>
     </div>
   );
@@ -32,7 +32,7 @@ export function CredibilityBar() {
   const items = [
     { k: "Linux-For-Android", v: "multi-distro · VirGL" },
     { k: "FluxMedia", v: "published on PyPI" },
-    { k: "Controller", v: "phone as gamepad" },
+    { k: "Lazy-ESP32", v: "flash · OTA · partitions" },
     { k: "ESP32-S3", v: "NAS + Linux research" },
   ];
   return (
