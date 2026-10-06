@@ -1,4 +1,5 @@
 import { DOCS, slugify, type Doc } from "../data/docs";
+import ThemeToggle from "./ThemeToggle";
 
 /** Wiki shell: guide sidebar with on-page contents, breadcrumb, prev/next. */
 export default function DocsChrome({ doc, children }: { doc: Doc | null; children: React.ReactNode }) {
@@ -32,7 +33,10 @@ export default function DocsChrome({ doc, children }: { doc: Doc | null; childre
         )}
       </aside>
       <div className="doc-main">
-        <p className="doc-crumb"><a href="/">Portfolio</a> / <a href="/docs">Docs</a>{doc && <> / {doc.title}</>}</p>
+        <div className="doc-topbar">
+          <p className="doc-crumb"><a href="/">Portfolio</a> / <a href="/docs">Docs</a>{doc && <> / {doc.title}</>}</p>
+          <ThemeToggle />
+        </div>
         {children}
         {doc && (
           <nav className="doc-pager" aria-label="More guides">
