@@ -488,7 +488,10 @@ html.has-cursor,html.has-cursor *{cursor:none !important}
 .doc-crumb{font-size:13.5px;color:var(--ink-soft);margin:0 0 4px}
 .doc-crumb a{text-decoration:none}
 .doc-note{background:var(--mist-2);border:1px solid var(--line);border-left:3px solid var(--ink);border-radius:0 6px 6px 0;padding:10px 14px;font-size:14.5px;margin:0 0 12px}
-.doc-code{background:var(--mist);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:16px;font-size:13.5px;line-height:1.6;overflow-x:auto;white-space:pre;margin:0 0 12px}
+.doc-code{background:var(--mist);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:16px;font-size:13.5px;line-height:1.6;overflow-x:auto;white-space:pre;margin:0}
+.doc-codewrap{position:relative;margin:0 0 12px}
+.doc-copy{position:absolute;top:8px;right:8px;font:inherit;font-size:12px;font-weight:600;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 10px;cursor:pointer}
+.doc-copy:hover{border-color:var(--ink)}
 .doc-list{margin-top:18px;border-top:1px solid var(--line)}
 .doc-row{display:grid;gap:4px;padding:14px 2px;text-decoration:none;border-bottom:1px solid var(--line)}
 .doc-row:hover{background:var(--mist-2)}

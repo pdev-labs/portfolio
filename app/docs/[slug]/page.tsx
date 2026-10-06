@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import DocsChrome from "../../../components/DocsChrome";
+import CodeBlock from "../../../components/CodeBlock";
 import { DOCS, slugify } from "../../../data/docs";
 
 export function generateStaticParams() {
@@ -29,7 +30,7 @@ export default function DocPage({ params }: { params: { slug: string } }) {
               <h2 id={slugify(s.heading)}>{s.heading}</h2>
               {s.body.map((p, i) => <p key={i}>{p}</p>)}
               {s.note && <p className="doc-note"><strong>Note:</strong> {s.note}</p>}
-              {s.code && <pre className="doc-code"><code>{s.code}</code></pre>}
+              {s.code && <CodeBlock code={s.code} />}
             </section>
           ))}
         </div>
