@@ -56,6 +56,20 @@ export const DOCS: Doc[] = [
           "Black screen on connect: stop-linux, then boot again and re-check the VNC address and password shown in Termux.",
         ],
       },
+      {
+        heading: "First boot checklist",
+        body: [
+          "Run the updater once from the manager menu so every package starts current. Then open a browser and play a video to confirm VirGL acceleration is active; choppy playback means you booted VNC instead of Termux:X11.",
+          "Change the default user password immediately, and test SSH from your computer with ssh user@phone-ip -p 8022 before you need it.",
+        ],
+      },
+      {
+        heading: "Backup and portability",
+        body: [
+          "Export from the manager menu writes a .tar.gz of the whole distro into the Android Downloads folder. Copy it off the phone as your backup.",
+          "To clone a setup onto another phone, drop that file into its Downloads folder and use Import. The new machine gets your packages, configs, and desktop exactly as they were.",
+        ],
+      },
     ],
   },
   {
@@ -94,6 +108,22 @@ export const DOCS: Doc[] = [
           "Back up the current firmware before experimental flashes, and use the board info option to confirm flash size before slicing partitions.",
         ],
       },
+      {
+        heading: "Full flash walkthrough",
+        body: [
+          "Start with the partition manager when the project serves files or logs: confirm the detected flash size, set the LittleFS share, and let the toolkit write partitions.csv with the flash size flag baked in.",
+          "Compile first without flashing to catch errors cheaply. Then flash over USB: the toolkit installs missing Arduino libraries, builds, writes bootloader plus firmware, and packs the data folder to LittleFS in one run.",
+          "Finish in the serial monitor. A clean boot log with no Guru Meditation errors means the partition table and firmware agree.",
+        ],
+      },
+      {
+        heading: "When flashing fails",
+        body: [
+          "Hold BOOT and tap RESET if the chip never enters download mode; some boards need the manual sequence every time.",
+          "Undefined reference to app_main after changing partitions means stale cache. Re-run through the partition manager so the clean flag is injected, then compile again.",
+          "Failed OTA usually means the board and computer are on different subnets or the firewall drops the return path. Flash over USB once to confirm the binary is good, then debug the network separately.",
+        ],
+      },
     ],
   },
   {
@@ -130,6 +160,21 @@ export const DOCS: Doc[] = [
           "The plugin manager lists extractors in a table with enable, disable, run, and search. Update checks run on a schedule you choose (daily, weekly, monthly, or never), and any prompt offers to ignore that version.",
         ],
         note: "Download only media you own or that is licensed for downloading. FluxMedia is a tool; what you fetch with it is your responsibility.",
+      },
+      {
+        heading: "Web UI and remote control",
+        body: [
+          "The React dashboard mirrors the terminal: queue downloads, browse files, and start watch parties from any browser on the network.",
+          "Expose it beyond your LAN only behind authentication you trust. The built-in gateway is designed for home networks, not the open internet.",
+        ],
+      },
+      {
+        heading: "Troubleshooting",
+        body: [
+          "Download fails at a chosen quality: this is the normal fallback path working. The bucket had no streams at that quality, so the best available was taken instead.",
+          "No audio in output or merge errors: FFmpeg is missing or not on PATH. Re-run install.py and confirm ffmpeg -version responds before retrying.",
+          "Update prompt loops: set the interval to monthly or use Ignore This Version, then check the releases page when you actually want the new build.",
+        ],
       },
     ],
   },
@@ -170,6 +215,20 @@ export const DOCS: Doc[] = [
           "Push firmware updates over the air straight from the web interface once the board is on your network.",
         ],
       },
+      {
+        heading: "Storage planning",
+        body: [
+          "The 16 MB flash layout reserves space for firmware, OTA slot, and a large LittleFS partition for files. Smaller boards shrink the file area first, so check the analytics modal when uploads start failing.",
+          "Keep large media as few files rather than thousands of small ones. Each file costs directory entries and lookup time on a microcontroller filesystem.",
+        ],
+      },
+      {
+        heading: "Recovery",
+        body: [
+          "Bad flash or wrong partition table: re-run python flasher.py over USB and select the correct flash size. This rewrites bootloader, partitions, and firmware cleanly.",
+          "Board unreachable on Wi-Fi: check the serial monitor. No IP means wrong credentials in secrets.h or a 5 GHz-only network the ESP32-S3 radio cannot see. It needs 2.4 GHz.",
+        ],
+      },
     ],
   },
   {
@@ -208,6 +267,20 @@ export const DOCS: Doc[] = [
           "Spacebar and click controls still work normally. Only programmatic background pauses are blocked.",
         ],
       },
+      {
+        heading: "Limits",
+        body: [
+          "DRM-protected services enforce concurrency on their servers, not in your browser. No client-side tool can unlock those, and this one does not try.",
+          "Portals change their player code regularly. When a lockout dialog survives, pull the latest repo version before reporting it, the selectors usually just moved.",
+        ],
+      },
+      {
+        heading: "Troubleshooting",
+        body: [
+          "Userscript does nothing: confirm the manager shows it enabled for the site, then hard-refresh. A stale cached player from before install is the usual cause.",
+          "Extension loads but tabs still pause: open the extensions page and press reload on the entry, then reopen the tabs. Developer-mode unpacked extensions do not auto-reload their content scripts.",
+        ],
+      },
     ],
   },
   {
@@ -241,6 +314,14 @@ export const DOCS: Doc[] = [
           "For tutorials, record once per feature and keep the raw folders. Re-recording a single changed step beats re-recording everything.",
         ],
       },
+      {
+        heading: "Platform notes",
+        body: [
+          "Windows and macOS need no special setup. Run the script and grant screen-recording permission if the OS asks on first capture.",
+          "Linux X11 works out of the box. On Wayland the process must read the input devices, so join the input group and log back in if captures come out empty.",
+          "Lower the throttle interval in config when documenting fast click sequences, and raise it for long reading sessions to keep folders small.",
+        ],
+      },
     ],
   },
   {
@@ -270,6 +351,21 @@ export const DOCS: Doc[] = [
           "Linux and Windows expose a full virtual Xbox 360 controller through uinput and ViGEmBus, so games detect a real gamepad.",
           "macOS blocks virtual gamepads, so the phone maps to keyboard and mouse instead. Configure the game for keyboard controls and everything still plays.",
           "Gyro aiming, haptics, and the fast-forward key work on all three platforms.",
+        ],
+      },
+      {
+        heading: "Latency tips",
+        body: [
+          "Use 5 GHz Wi-Fi with both devices in the same room. Most perceived lag is the router, not the app.",
+          "Close background downloads and streams on both devices while playing. A saturated uplink delays every input packet equally.",
+        ],
+      },
+      {
+        heading: "Troubleshooting",
+        body: [
+          "Phone cannot reach the host: confirm both are on the same network and the firewall allowed the app. Retry the address shown in the host window exactly, including the port.",
+          "No inputs register on Linux: the uinput setup from first launch did not complete. Re-run with root once, then restart the app.",
+          "Buttons do nothing on macOS: the game is listening for a gamepad. Switch it to keyboard controls and map the phone buttons to keys.",
         ],
       },
     ],
