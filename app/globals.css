@@ -453,32 +453,40 @@ html.has-cursor,html.has-cursor *{cursor:none !important}
 .prose p{color:var(--ink-soft)}
 .prose ul{display:grid;gap:10px;padding-left:20px;color:var(--ink-soft)}
 .prose a{font-weight:700}
-.doc-list{margin-top:18px;border-top:2px solid var(--ink)}
-.doc-row{display:grid;gap:4px;padding:14px 2px;text-decoration:none;border-bottom:1px solid var(--line)}
-.doc-row:hover{background:var(--mist-2)}
-.doc-row strong{font-family:var(--font-display);font-size:18px;letter-spacing:-.01em}
-.doc-code{background:#f6f8fa;color:#24292f;border:1px solid var(--line);border-radius:12px;padding:16px 18px;font-family:var(--font-code);font-size:13.5px;line-height:1.7;overflow-x:auto;white-space:pre}
-.doc-shell{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;align-items:start}
-.doc-side{position:sticky;top:84px}
+/* Docs: classic GitHub-style article. Fixed light palette, system stack. */
+.docs-light{
+  --paper:#ffffff;--ink:#1f2328;--ink-soft:#59636e;--line:#d1d9e0;
+  --card:#ffffff;--mist:#f6f8fa;--mist-2:#f6f8fa;
+  color-scheme:light;background:var(--paper);color:var(--ink);
+}
+.doc-shell{display:grid;grid-template-columns:250px minmax(0,1fr);gap:40px;align-items:start;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6}
+.doc-shell code,.doc-shell pre{font-family:ui-monospace,SFMono-Regular,SFMono-Regular,Menlo,Consolas,monospace}
+.doc-side{position:sticky;top:24px}
 .doc-side-h{font-size:13px;font-weight:700;margin:0;color:var(--ink)}
 .doc-side ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:2px}
-.doc-side a{display:block;text-decoration:none;font-size:14.5px;font-weight:500;color:var(--ink-soft);border-radius:8px;padding:7px 10px}
-.doc-side a:hover{background:var(--mist-2);color:var(--ink)}
-.doc-side a.on{background:var(--ink);color:var(--paper);font-weight:700}
+.doc-side a{display:block;text-decoration:none;font-size:14px;color:var(--ink-soft);border-radius:6px;padding:6px 10px}
+.doc-side a:hover{background:var(--mist-2);color:var(--ink);text-decoration:none}
+.doc-side a.on{background:transparent;color:var(--ink);font-weight:700;box-shadow:inset 2px 0 0 var(--ink);border-radius:0}
 .doc-toc{margin-top:20px;border-top:1px solid var(--line);padding-top:12px}
-.doc-main{min-width:0}
+.doc-main{min-width:0;max-width:75ch}
+.doc-main h1,.doc-main h2{font-family:inherit;letter-spacing:normal}
+.doc-main h1{font-size:32px;font-weight:700;border-bottom:1px solid var(--line);padding-bottom:10px}
+.doc-main h2{font-size:22px;font-weight:700;margin-top:32px}
 .doc-main a{color:var(--ink)}
 .doc-crumb{font-size:13.5px;color:var(--ink-soft);margin:0 0 4px}
 .doc-crumb a{text-decoration:none}
-.doc-note{background:var(--mist-2);border:1px solid var(--line);border-left:3px solid var(--ink);border-radius:0 10px 10px 0;padding:10px 14px;font-size:14.5px;color:var(--ink)}
+.doc-note{background:var(--mist-2);border:1px solid var(--line);border-left:3px solid var(--ink);border-radius:0 6px 6px 0;padding:10px 14px;font-size:14.5px}
+.doc-code{background:#f6f8fa;color:#24292f;border:1px solid var(--line);border-radius:6px;padding:16px;font-size:13.5px;line-height:1.6;overflow-x:auto;white-space:pre}
+.doc-list{margin-top:18px;border-top:1px solid var(--line)}
+.doc-row{display:grid;gap:4px;padding:14px 2px;text-decoration:none;border-bottom:1px solid var(--line)}
+.doc-row:hover{background:var(--mist-2)}
+.doc-row strong{font-family:inherit;font-size:18px}
 .doc-pager{display:flex;justify-content:space-between;gap:12px;margin-top:32px;border-top:1px solid var(--line);padding-top:16px}
 .doc-pager a{text-decoration:none}
 .doc-pager a:hover{text-decoration:underline}
 .doc-pager a.next{text-align:right}
 .doc-pager-k{display:block;font-size:12px;font-weight:700;color:var(--ink-soft)}
-.doc-pager strong{font-family:var(--font-display);font-size:15.5px}
-[data-theme="dark"] .doc-code{background:#0d1117;color:#e6edf3;border-color:#30363d}
-[data-theme="dark"] .doc-note{border-color:#30363d}
+.doc-pager strong{font-family:inherit;font-size:15px}
 @media (max-width:900px){
   .doc-shell{grid-template-columns:1fr}
   .doc-side{position:static}

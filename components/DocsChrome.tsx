@@ -6,6 +6,7 @@ export default function DocsChrome({ doc, children }: { doc: Doc | null; childre
   const prev = idx > 0 ? DOCS[idx - 1] : null;
   const next = idx >= 0 && idx < DOCS.length - 1 ? DOCS[idx + 1] : null;
   return (
+    <div className="docs-light">
     <div className="wrap doc-shell">
       <aside className="doc-side" aria-label="Guides">
         <p className="doc-side-h">Guides</p>
@@ -44,6 +45,7 @@ export default function DocsChrome({ doc, children }: { doc: Doc | null; childre
           </nav>
         )}
       </div>
+    </div>
     </div>
   );
 }
