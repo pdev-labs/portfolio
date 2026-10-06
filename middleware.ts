@@ -20,7 +20,8 @@ export function middleware(req: NextRequest) {
   }
   if (host === "docs.pdevlabs.me") {
     const url = req.nextUrl.clone();
-    url.pathname = pathname === "/" ? "/docs" : `/docs${pathname}`;
+    // Idempotent: sidebar links already carry the /docs prefix.
+    url.pathname = pathname === "/" ? "/docs" : pathname.startsWith("/docs") ? pathname : `/docs${pathname}`;
     url.search = search;
     return NextResponse.rewrite(url);
   }
