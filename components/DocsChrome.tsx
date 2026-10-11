@@ -1,8 +1,10 @@
+import { headers } from "next/headers";
 import { DOCS, slugify, type Doc } from "../data/docs";
 import ThemeToggle from "./ThemeToggle";
 
 /** Wiki shell: guide sidebar with on-page contents, breadcrumb, prev/next. */
 export default function DocsChrome({ doc, children }: { doc: Doc | null; children: React.ReactNode }) {
+  const standalone = ((headers().get("host") ?? "").toLowerCase() === "docs.pdevlabs.me");
   const idx = doc ? DOCS.findIndex(d => d.slug === doc.slug) : -1;
   const prev = idx > 0 ? DOCS[idx - 1] : null;
   const next = idx >= 0 && idx < DOCS.length - 1 ? DOCS[idx + 1] : null;
@@ -34,7 +36,11 @@ export default function DocsChrome({ doc, children }: { doc: Doc | null; childre
       </aside>
       <div className="doc-main">
         <div className="doc-topbar">
-          <p className="doc-crumb"><a href="/">Portfolio</a> / <a href="/docs">Docs</a>{doc && <> / {doc.title}</>}</p>
+          <p className="doc-crumb">
+            {standalone
+              ? <><a href="/docs">Docs</a>{doc && <> / {doc.title}</>}</>
+              : <><a href="/">Portfolio</a> / <a href="/docs">Docs</a>{doc && <> / {doc.title}</>}</>}
+          </p>
           <ThemeToggle />
         </div>
         {children}
