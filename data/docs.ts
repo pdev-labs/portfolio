@@ -555,28 +555,6 @@ export const DOCS: Doc[] = [
     ],
   },
   {
-    slug: "pdev",
-    title: "pdev language overview",
-    summary: "Hinglish programming language in pure Python for first-time coders.",
-    repo: "https://github.com/pdev-labs/pdev",
-    sections: [
-      {
-        heading: "What it is",
-        body: [
-          "A high-level language written in Hinglish and implemented in dependency-free Python. Beginners start with two keywords, while loops, functions, OOP, modules, error handling, and a package manager keep it capable.",
-          "Released under GPLv3 and installable on Linux, Windows, and macOS with double-click .pl support.",
-        ],
-        code: "banao naam = \"Asha\"\ndikhao \"Namaste {naam}!\"",
-      },
-      {
-        heading: "Install",
-        body: [
-          "You need Python 3.10 or newer and nothing else. The installer puts pdev on PATH so .pl files run directly.",
-        ],
-      },
-    ],
-  },
-  {
     slug: "phantom",
     title: "Phantom overview",
     summary: "Consent-based audio prank app with sensor triggers.",
