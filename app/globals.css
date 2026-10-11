@@ -467,7 +467,7 @@ html.has-cursor,html.has-cursor *{cursor:none !important}
 .doc-shell{display:grid;grid-template-columns:250px minmax(0,1fr);gap:40px;align-items:start;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6}
 .doc-shell code,.doc-shell pre{font-family:ui-monospace,SFMono-Regular,SFMono-Regular,Menlo,Consolas,monospace}
 .docs-theme section{padding:0}
-.doc-side{position:sticky;top:24px}
+.doc-side{position:sticky;top:24px;max-height:calc(100dvh - 48px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
 .doc-side-h{font-size:13px;font-weight:700;margin:0;color:var(--ink)}
 .doc-side ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:2px}
 .doc-side a{display:block;text-decoration:none;font-size:14px;color:var(--ink-soft);border-radius:6px;padding:6px 10px}
@@ -504,7 +504,7 @@ html.has-cursor,html.has-cursor *{cursor:none !important}
 .doc-pager strong{font-family:inherit;font-size:15px}
 @media (max-width:900px){
   .doc-shell{grid-template-columns:1fr}
-  .doc-side{position:static}
+  .doc-side{position:static;max-height:none;overflow:visible}
   .doc-side nav ul{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
   .doc-side nav li{flex:none}
   .doc-toc{display:none}
