@@ -370,4 +370,361 @@ export const DOCS: Doc[] = [
       },
     ],
   },
+  {
+    slug: "archlinux-config",
+    title: "archlinux-config overview",
+    summary: "Guided-installer config and bootstrap for an Arch Linux server.",
+    repo: "https://github.com/pdev-labs/archlinux-config",
+    sections: [
+      {
+        heading: "What it is",
+        body: [
+          "A ready-made server.json for the Arch guided installer plus a bootstrap.sh for first boot. It targets a German-locale server: German keyboard and UTF-8 locale, Europe/Berlin timezone, nearby mirrors, linux-lts kernel, GRUB, NTP on, and swap disabled.",
+        ],
+      },
+      {
+        heading: "Use it",
+        body: [
+          "Feed the hosted server.json to archinstall through its config URL option during installation.",
+          "After first boot, the bootstrap script creates a sudo-capable user, installs Ansible prerequisites, and enables SSH so the machine is remotely manageable.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "facebook-media-extractor",
+    title: "facebook-media-extractor guide",
+    summary: "Full-resolution images and video from public Facebook albums.",
+    repo: "https://github.com/pdev-labs/facebook-media-extractor",
+    sections: [
+      {
+        heading: "What it does",
+        body: [
+          "Scrolls lazy-loaded albums to the bottom so nothing is missed, then pulls images, yt-dlp video, and post text while filtering out UI chrome and emoji.",
+          "Login walls are handled by authenticating locally once and reusing the saved session.",
+        ],
+      },
+      {
+        heading: "Install",
+        body: [
+          "You need Python 3.8 or newer. The automated scripts set up Python, Chromium, and a virtual environment. Manual installs use a venv with pip install -r requirements.txt.",
+        ],
+        code: "chmod +x install.sh\n./install.sh",
+      },
+      {
+        heading: "Responsible use",
+        body: [
+          "Stick to public links and your own account. Scraping other people's content can violate platform terms regardless of tooling.",
+        ],
+        note: "Log in only in your own browser session and keep the saved session files private.",
+      },
+    ],
+  },
+  {
+    slug: "fluxmedia-packages",
+    title: "fluxmedia-packages overview",
+    summary: "Native AUR, deb, and rpm builds of FluxMedia with auto-sync.",
+    repo: "https://github.com/pdev-labs/fluxmedia-packages",
+    sections: [
+      {
+        heading: "Tracks",
+        body: [
+          "Arch ships a PKGBUILD with desktop file and man page, Debian ships a debian/ tree, Fedora ships an rpm spec, and Windows packaging is planned. All build from the same upstream release tarball with system Python dependencies.",
+          "End users installing for the first time should start with INSTALL.md, which also explains the current yay and paru situation.",
+        ],
+      },
+      {
+        heading: "Binaries and sync",
+        body: [
+          "Every push builds Arch, Debian, and Fedora packages as workflow artifacts, and published releases attach the same files. A sync script plus scheduled workflow bumps every track when upstream FluxMedia releases.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "actions-rdp",
+    title: "GitHub Actions RDP guide",
+    summary: "Temporary GUI desktops inside Actions runners for app testing.",
+    repo: "https://github.com/pdev-labs/Free-Github-Actions-RDP-for-App-Testing",
+    sections: [
+      {
+        heading: "What it provisions",
+        body: [
+          "Linux, Windows, and macOS runners with XFCE, GNOME, KDE, i3, or headless CLI, tunneled out over Pinggy or Ngrok for RDP, VNC, and SSH access.",
+          "Extras include custom ISO boot through nested QEMU, saved profiles.json presets, audio redirection, and arm64 emulation for cross-platform checks.",
+        ],
+      },
+      {
+        heading: "Typical session",
+        body: [
+          "Launch the workflow, pick OS, desktop, and tunnel in the interactive menu, then connect with your RDP or VNC client using the printed address.",
+          "Save the exact setup as a profile so repeat test runs deploy without clicking through the menu again.",
+        ],
+        note: "Educational and temporary testing only. Mining, hosting, or abuse gets the GitHub account banned. Respect the runner time limits.",
+      },
+    ],
+  },
+  {
+    slug: "instagram-media-extractor",
+    title: "instagram-media-extractor guide",
+    summary: "High-resolution posts, reels, and profile media without API blocks.",
+    repo: "https://github.com/pdev-labs/instagram-media-extractor",
+    sections: [
+      {
+        heading: "How it avoids blocks",
+        body: [
+          "Instead of hammering rate-limited API endpoints, it drives a real headless Chrome with Selenium, scrolls like a human, and reads media straight from the DOM. Videos go through yt-dlp with your cookies converted to Netscape format.",
+        ],
+      },
+      {
+        heading: "Install and run",
+        body: [
+          "The bootstrap scripts create an isolated virtual environment on Windows, macOS, Linux, and Termux. An interactive login captures user agent and cookies once, then reuses them to stay under bot detection.",
+          "Downloads sort themselves into username and timestamp folders under your Downloads directory.",
+        ],
+        code: "./install.sh\n./ig_media_extractor.py",
+        note: "Use your own account and content. Automated scraping can breach Instagram's terms.",
+      },
+    ],
+  },
+  {
+    slug: "linux-on-esp32",
+    title: "linux-on-esp32 overview",
+    summary: "NOMMU Linux 6.11 with Wi-Fi and I2C on the ESP32-S3.",
+    repo: "https://github.com/pdev-labs/linux-on-esp32",
+    sections: [
+      {
+        heading: "What it is",
+        body: [
+          "A research-grade port running a 6.11 NOMMU kernel on Xtensa with a Buildroot userland: wpa_supplicant Wi-Fi, full I2C utilities, vi, awk, sed, wget, ping, and a JFFS2 partition so configs survive reboots.",
+        ],
+      },
+      {
+        heading: "Flash it",
+        body: [
+          "Skip compiling and take the release binaries: bootloader, partition table, network adapter, kernel image, CramFS rootfs, and the etc overlay.",
+          "Flash them with esptool over USB, then talk to the board over serial and Wi-Fi.",
+        ],
+        code: "pip install esptool",
+        note: "Research experiment, not a daily driver. Expect microcontroller-grade speed and rough edges.",
+      },
+    ],
+  },
+  {
+    slug: "needle-2-esp32",
+    title: "needle-2-esp32 overview",
+    summary: "A 45M-parameter LLM doing tool calls fully offline on ESP32-S3.",
+    repo: "https://github.com/pdev-labs/needle-2-esp32",
+    sections: [
+      {
+        heading: "What it is",
+        body: [
+          "An independent C99 implementation of the .cact inference format, about 3,700 lines with no dependencies. Weights memory-map from flash, requests stream in over a terminal, and schema-valid tool calls drive the onboard RGB LED with no network involved.",
+          "Each response takes around forty seconds on the board, reasoning included.",
+        ],
+      },
+      {
+        heading: "Hardware",
+        body: [
+          "One specific configuration is supported: ESP32-S3 with 16 MB flash and 8 MB octal PSRAM, WS2812 LED on GPIO48, console over the UART USB port.",
+          "Smaller flash or quad PSRAM cannot fit the model and KV cache, so match the board before assuming broken code.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "panic-mode",
+    title: "Panic Mode overview",
+    summary: "Educational threat-awareness reference with risk classification.",
+    repo: "https://github.com/pdev-labs/Panic_Mode",
+    sections: [
+      {
+        heading: "What it is",
+        body: [
+          "Documents dangerous commands and techniques across Linux, Windows, and macOS with what they do, why they hurt, and how defenders detect, mitigate, and recover.",
+          "Every technique carries a risk class from INFO up to CRITICAL so readers can gauge blast radius before studying it.",
+        ],
+      },
+      {
+        heading: "Lab rules",
+        body: [
+          "Study inside an isolated, disposable virtual machine with a snapshot taken first and no path to sensitive networks. The repo ships a VM setup guide for exactly this.",
+        ],
+        note: "Never run anything from this repo on a primary machine, a production system, or anyone else's computer. Theory stays in the lab.",
+      },
+    ],
+  },
+  {
+    slug: "pdev",
+    title: "pdev language overview",
+    summary: "Hinglish programming language in pure Python for first-time coders.",
+    repo: "https://github.com/pdev-labs/pdev",
+    sections: [
+      {
+        heading: "What it is",
+        body: [
+          "A high-level language written in Hinglish and implemented in dependency-free Python. Beginners start with two keywords, while loops, functions, OOP, modules, error handling, and a package manager keep it capable.",
+          "Released under GPLv3 and installable on Linux, Windows, and macOS with double-click .pl support.",
+        ],
+        code: "banao naam = \"Asha\"\ndikhao \"Namaste {naam}!\"",
+      },
+      {
+        heading: "Install",
+        body: [
+          "You need Python 3.10 or newer and nothing else. The installer puts pdev on PATH so .pl files run directly.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "phantom",
+    title: "Phantom overview",
+    summary: "Consent-based audio prank app with sensor triggers.",
+    repo: "https://github.com/pdev-labs/Phantom",
+    sections: [
+      {
+        heading: "What it is",
+        body: [
+          "An offline Android app plus desktop scripts that play random audio clips on triggers: shake, flip, tilt, spin, charger and Bluetooth connect or disconnect, and configurable motion sequences.",
+          "It stays offline with no accessibility service, no keylogging, and no screen reading.",
+        ],
+        note: "Pranks need the explicit consent of everyone in earshot. Without it, do not run it.",
+      },
+    ],
+  },
+  {
+    slug: "portfolio",
+    title: "portfolio overview",
+    summary: "This site: Next.js 14, TypeScript, zero images, live terminal.",
+    repo: "https://github.com/pdev-labs/portfolio",
+    sections: [
+      {
+        heading: "Stack",
+        body: [
+          "App Router with TypeScript, hand-rolled CSS, next/font hosting, and no runtime dependencies beyond Next and React. Dark, light, and system themes with consent-gated storage.",
+        ],
+        code: "npm install\nnpm run dev      # http://localhost:3000\nnpm run build && npm start",
+      },
+      {
+        heading: "Signature pieces",
+        body: [
+          "A runnable in-browser terminal with history and tab completion, a Ctrl+K command palette, filterable project explorer, spring-physics scrolling, and a WebGL hero backdrop.",
+          "The same repo also serves the go short links and these docs through middleware and static routes.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "system-launcher",
+    title: "system-launcher guide",
+    summary: "Text-first Android launcher with icon logos, built by CI.",
+    repo: "https://github.com/pdev-labs/system-launcher",
+    sections: [
+      {
+        heading: "What it is",
+        body: [
+          "A Last-Launcher-inspired home screen: pinned icon-plus-name rows, instant search with single-match auto-launch, long-press pin, rename, hide, and info actions.",
+          "Settings toggle icon logos for pure text mode, plus icon size and light or dark theme. Kotlin with Compose, Material3, and DataStore throughout.",
+        ],
+      },
+      {
+        heading: "Install",
+        body: [
+          "There are no local builds. Push to main, take app-debug.apk from the Build APK workflow, install with adb, and set it as the default Home app.",
+        ],
+        code: "adb install app-debug.apk",
+      },
+    ],
+  },
+  {
+    slug: "telezip",
+    title: "TeleZip guide",
+    summary: "Compressed folder backups delivered to Telegram, up to 2 GB each.",
+    repo: "https://github.com/pdev-labs/TeleZip",
+    sections: [
+      {
+        heading: "How it beats the limit",
+        body: [
+          "Standard bot uploads cap at 50 MB. TeleZip points at a local Dockerized Bot API server instead, which raises the ceiling to 2 GB per file.",
+          "The all-in-one script zips folders in parallel, resumes interrupted runs, cleans up after success, skips excluded paths, encrypts with AES passwords, and captions every upload.",
+        ],
+      },
+      {
+        heading: "Prerequisites",
+        body: [
+          "Python 3 for the master script, Docker for the local API server, a free API ID and hash, and a bot token from BotFather. Shell and PowerShell variants cover lightweight use without Python.",
+        ],
+        note: "Keep the API credentials and bot token out of screenshots, issues, and shared configs.",
+      },
+    ],
+  },
+  {
+    slug: "ubuntu-for-termux",
+    title: "ubuntu-for-termux guide",
+    summary: "Automated Ubuntu with XFCE or LXDE on Android via proot.",
+    repo: "https://github.com/pdev-labs/ubuntu-for-termux",
+    sections: [
+      {
+        heading: "Install",
+        body: [
+          "No root needed. Install Termux from F-Droid, never the stale Play Store build, then run the interactive installer and pick a preset or custom package set with XFCE4 or LXDE.",
+        ],
+      },
+      {
+        heading: "Connect",
+        body: [
+          "Start the VNC server with the command printed at the end of setup, open a VNC viewer, and connect to 127.0.0.1:5901 with the default password ubuntu.",
+          "Change that password on first login if the phone ever leaves your hands.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "vectolan",
+    title: "VecToLAN overview",
+    summary: "Early-stage project. No published docs yet.",
+    repo: "https://github.com/pdev-labs/VecToLAN",
+    sections: [
+      {
+        heading: "Status",
+        body: [
+          "This repository has no published documentation so far. The repo itself is the current source of truth.",
+        ],
+        note: "Watch the repo for releases. This page grows once the project does.",
+      },
+    ],
+  },
+  {
+    slug: "whatsapp-status-fetcher",
+    title: "whatsapp-status-fetcher guide",
+    summary: "Save WhatsApp Status photos and videos via automated Chrome.",
+    repo: "https://github.com/pdev-labs/whatsapp-status-fetcher",
+    sections: [
+      {
+        heading: "Install and run",
+        body: [
+          "You need Node.js. Clone, install Puppeteer, and run the script. A visible Chrome window opens for a one-time QR scan under Linked Devices, and the session persists after that.",
+          "Open the Status tab and view contacts. Media intercepts automatically into per-contact image folders.",
+        ],
+        code: "git clone https://github.com/pdev-labs/whatsapp-status-fetcher.git\ncd whatsapp-status-fetcher\nnpm install\nnode index.js",
+        note: "Personal and educational use only. Automating WhatsApp Web can breach its terms, and other people's statuses are theirs.",
+      },
+    ],
+  },
+  {
+    slug: "youtube-downloader",
+    title: "youtube_video_downloader migration note",
+    summary: "Deprecated. FluxMedia is the supported successor.",
+    repo: "https://github.com/pdev-labs/youtube_video_downloader",
+    sections: [
+      {
+        heading: "Migrate",
+        body: [
+          "Active development ended here. The terminal downloader with quality profiles, MP3 extraction, batch queues, and history logging now lives on as FluxMedia with ongoing maintenance.",
+          "Install the PyPI package and bring your yt-dlp habits with you. Nothing here receives fixes anymore.",
+        ],
+        code: "pip install fluxmedia",
+      },
+    ],
+  },
 ];
