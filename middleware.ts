@@ -7,7 +7,32 @@ function hostOf(req: NextRequest): string {
   return (req.headers.get("host") ?? "").toLowerCase();
 }
 
-export function middleware(req: NextRequest) {
+/** Live repo lookup so new repos work without a map edit. Null on any failure. */
+async function findRepo(slug: string): Promise<string | null> {
+  if (!slug || slug.includes(".") || slug.includes("/")) return null;
+  try {
+    const headers: Record<string, string> = { "User-Agent": "pdevlabs-portfolio" };
+    const token = process.env.GITHUB_TOKEN;
+    if (token) headers.Authorization = `Bearer ${token}`;
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 4000);
+    const r = await fetch(`https://api.github.com/users/pdev-labs/repos?per_page=100`, {
+      headers,
+      signal: ctrl.signal,
+    });
+    clearTimeout(timer);
+    if (!r.ok) return null;
+    const data = await r.json();
+    const hit = (Array.isArray(data) ? data : []).find(
+      (x: any) => !x.private && !x.fork && String(x.name ?? "").toLowerCase() === slug
+    );
+    return hit ? String(hit.html_url) : null;
+  } catch {
+    return null;
+  }
+}
+
+export async function middleware(req: NextRequest) {
   const { pathname, search } = req.nextUrl;
   if (pathname.startsWith("/_next") || pathname === "/favicon.svg") return NextResponse.next();
 
@@ -16,6 +41,8 @@ export function middleware(req: NextRequest) {
     const slug = pathname.replace(/^\/+|\/+$/g, "").toLowerCase();
     const target = GO_LINKS[slug];
     if (target) return NextResponse.redirect(target, 308);
+    const repo = await findRepo(slug);
+    if (repo) return NextResponse.redirect(repo, 308);
     return NextResponse.redirect(HOME, 308);
   }
   if (host === "docs.pdevlabs.me") {

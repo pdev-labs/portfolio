@@ -2,12 +2,25 @@ import { headers } from "next/headers";
 import { DOCS, slugify, type Doc } from "../data/docs";
 import ThemeToggle from "./ThemeToggle";
 
+export type AutoEntry = { slug: string; title: string };
+
 /** Wiki shell: guide sidebar with on-page contents, breadcrumb, prev/next. */
-export default function DocsChrome({ doc, children }: { doc: Doc | null; children: React.ReactNode }) {
+export default function DocsChrome({
+  doc,
+  auto = [],
+  crumb,
+  children,
+}: {
+  doc: Doc | null;
+  auto?: AutoEntry[];
+  crumb?: string;
+  children: React.ReactNode;
+}) {
   const standalone = ((headers().get("host") ?? "").toLowerCase() === "docs.pdevlabs.me");
   const idx = doc ? DOCS.findIndex(d => d.slug === doc.slug) : -1;
   const prev = idx > 0 ? DOCS[idx - 1] : null;
   const next = idx >= 0 && idx < DOCS.length - 1 ? DOCS[idx + 1] : null;
+  const trail = doc ? doc.title : crumb;
   return (
     <div className="docs-theme">
     <div className="wrap doc-shell">
@@ -23,6 +36,16 @@ export default function DocsChrome({ doc, children }: { doc: Doc | null; childre
             ))}
           </ul>
         </nav>
+        {auto.length > 0 && (
+          <nav className="doc-toc" aria-label="All repositories">
+            <p className="doc-side-h">All repositories ({auto.length})</p>
+            <ul>
+              {auto.map(a => (
+                <li key={a.slug}><a href={`/docs/${a.slug}`}>{a.title}</a></li>
+              ))}
+            </ul>
+          </nav>
+        )}
         {doc && (
           <nav className="doc-toc" aria-label="On this page">
             <p className="doc-side-h">On this page</p>
@@ -38,8 +61,8 @@ export default function DocsChrome({ doc, children }: { doc: Doc | null; childre
         <div className="doc-topbar">
           <p className="doc-crumb">
             {standalone
-              ? <><a href="/docs">Docs</a>{doc && <> / {doc.title}</>}</>
-              : <><a href="/">Portfolio</a> / <a href="/docs">Docs</a>{doc && <> / {doc.title}</>}</>}
+              ? <><a href="/docs">Docs</a>{trail && <> / {trail}</>}</>
+              : <><a href="/">Portfolio</a> / <a href="/docs">Docs</a>{trail && <> / {trail}</>}</>}
           </p>
           <ThemeToggle />
         </div>

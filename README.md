@@ -17,6 +17,7 @@ npm run build && npm start
 
 - `app/` — routes, layout, global CSS, sitemap, robots, OG image, privacy page, docs guides
 - `middleware.ts` — serves `go.pdevlabs.me` short links and `docs.pdevlabs.me` from this repo
+- `lib/github.ts` — live public-repo listing, READMEs, and file trees (hourly cache)
 - `components/` — nav, interactive terminal, theme, filters, palette, toasts, effects
 - `data/site.ts` — profile, projects, skills, experience (grounded in GitHub data)
 - `public/` — `logo.svg`, favicon
