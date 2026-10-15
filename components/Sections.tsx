@@ -1,6 +1,6 @@
 import LabConsole from "./LabConsole";
 import ContactForm from "./ContactForm";
-import { JOURNEY, EXPERIENCE, SERVICES, PROCESS, PROFILE } from "../data/site";
+import { JOURNEY, SERVICES, PROCESS, PROFILE } from "../data/site";
 
 export function Hero() {
   return (
@@ -74,31 +74,6 @@ export function About() {
           </ul>
           <p className="muted" style={{ marginTop: 12 }}>Currently hardening the Linux-For-Android boot manager and preparing FluxMedia 2.x.</p>
         </div>
-      </div>
-    </div>
-  );
-}
-
-export function Experience() {
-  return (
-    <div className="wrap">
-      <div className="sec-head reveal">
-        <div>
-          <p className="sec-label">Experience</p>
-          <h2>Self-directed, but structured.</h2>
-        </div>
-      </div>
-      <div className="timeline">
-        {EXPERIENCE.map(e => (
-          <article className="t-item reveal" key={e.role}>
-            <div className="t-period">{e.period}</div>
-            <div>
-              <h3>{e.role}</h3>
-              <p className="muted">{e.org}</p>
-              <ul>{e.points.map(pt => <li key={pt}>{pt}</li>)}</ul>
-            </div>
-          </article>
-        ))}
       </div>
     </div>
   );

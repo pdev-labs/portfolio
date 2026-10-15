@@ -12,6 +12,7 @@ export type GhRepo = {
   stars: number;
   url: string;
   branch: string;
+  created: string;
   updated: string;
 };
 
@@ -39,6 +40,7 @@ export async function getRepos(): Promise<GhRepo[]> {
         stars: Number(x.stargazers_count ?? 0),
         url: String(x.html_url ?? `https://github.com/${OWNER}/${x.name}`),
         branch: String(x.default_branch ?? "main"),
+        created: String(x.created_at ?? ""),
         updated: String(x.pushed_at ?? x.updated_at ?? ""),
       }))
       .filter((x: GhRepo) => x.name.length > 0)

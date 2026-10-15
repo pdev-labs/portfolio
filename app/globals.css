@@ -159,6 +159,7 @@ section{padding:52px 0;scroll-padding-top:84px}
 .t-period{font-size:13px;font-weight:700;color:var(--ink-soft)}
 .t-item h3{margin:0;font-family:var(--font-display);font-size:19px}
 .t-item ul{margin:10px 0 0;padding-left:18px;color:var(--ink-soft);font-size:15px;display:grid;gap:6px}
+.exp-more{margin-top:16px}
 /* Services / process */
 .svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .proc-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
