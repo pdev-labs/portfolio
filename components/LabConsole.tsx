@@ -165,14 +165,12 @@ export default function LabConsole() {
       const cached = JSON.parse(storeGet("cache", "pdev-gh-stats") || "null");
       if (cached && Date.now() - cached.at < 864e5) { setLive({ ...cached, fresh: false }); return; }
     } catch { /* ignore */ }
-    fetch("https://api.github.com/users/pdev-labs/repos?per_page=100")
+    fetch("/api/stats")
       .then(r => (r.ok ? r.json() : Promise.reject()))
-      .then((repos: { stargazers_count: number; language: string | null }[]) => {
-        const stars = repos.reduce((s, r) => s + (r.stargazers_count || 0), 0);
-        const langs = new Set(repos.map(r => r.language).filter(Boolean)).size;
-        const data = { repos: repos.length, stars, langs, at: Date.now() };
-        storeSet("cache", "pdev-gh-stats", JSON.stringify(data));
-        setLive({ ...data, fresh: true });
+      .then((data: { repos: number; stars: number; langs: number }) => {
+        const full = { ...data, at: Date.now() };
+        storeSet("cache", "pdev-gh-stats", JSON.stringify(full));
+        setLive({ ...full, fresh: true });
       })
       .catch(() => { /* static fallback stays */ });
   }, []);
