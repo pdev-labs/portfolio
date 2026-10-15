@@ -2,10 +2,10 @@
 import { useEffect, useState } from "react";
 
 export type StoreCat = "preferences" | "history" | "cache";
-export type Consent = Record<StoreCat, boolean> & { decided: boolean };
+export type Consent = Record<StoreCat, boolean> & { decided: boolean; analytics: boolean };
 
 const KEY = "pdev-consent";
-const DEFAULTS: Consent = { preferences: false, history: false, cache: false, decided: false };
+const DEFAULTS: Consent = { preferences: false, history: false, cache: false, analytics: false, decided: false };
 let current: Consent = { ...DEFAULTS };
 let loaded = false;
 
@@ -28,6 +28,7 @@ function read(): Consent {
       preferences: !!v.preferences,
       history: !!v.history,
       cache: !!v.cache,
+      analytics: !!v.analytics,
       decided: true,
     };
   } catch {
@@ -88,11 +89,12 @@ const LABELS: [StoreCat, string, string][] = [
   ["history", "Terminal history", "Command recall across visits"],
   ["cache", "Stats cache", "GitHub star counts for 24h"],
 ];
+const ANALYTICS_LABEL: [string, string] = ["Usage analytics", "Anonymous page views via Google Analytics"];
 
 export default function ConsentBanner() {
   const [visible, setVisible] = useState(false);
   const [custom, setCustom] = useState(false);
-  const [prefs, setPrefs] = useState({ preferences: true, history: true, cache: true });
+  const [prefs, setPrefs] = useState({ preferences: true, history: true, cache: true, analytics: false });
 
   useEffect(() => {
     ensure();
@@ -122,6 +124,7 @@ export default function ConsentBanner() {
       <p className="consent-text">
         This site works fully without storage. Optionally it can remember your theme,
         terminal history, and cached stats — only in your browser, never on a server.
+        Anonymous usage analytics is a separate opt-in below.
       </p>
       {custom && (
         <div className="consent-opts">
@@ -132,15 +135,20 @@ export default function ConsentBanner() {
               <span><strong>{label}</strong><small>{sub}</small></span>
             </label>
           ))}
+          <label key="analytics">
+            <input type="checkbox" checked={prefs.analytics}
+              onChange={e => setPrefs(p => ({ ...p, analytics: e.target.checked }))} />
+            <span><strong>{ANALYTICS_LABEL[0]}</strong><small>{ANALYTICS_LABEL[1]}</small></span>
+          </label>
         </div>
       )}
       <div className="consent-actions">
         <button type="button" className="btn btn-primary btn-small"
-          onClick={() => { decide({ preferences: true, history: true, cache: true }); setVisible(false); }}>
+          onClick={() => { decide({ preferences: true, history: true, cache: true, analytics: true }); setVisible(false); }}>
           Accept all
         </button>
         <button type="button" className="btn btn-ghost btn-small"
-          onClick={() => { decide({ preferences: false, history: false, cache: false }); setVisible(false); }}>
+          onClick={() => { decide({ preferences: false, history: false, cache: false, analytics: false }); setVisible(false); }}>
           Essential only
         </button>
         {custom

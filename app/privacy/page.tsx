@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy \u2014 pdev-labs",
-  description: "Privacy notes for the pdev-labs portfolio: no cookies, no tracking, no analytics. Terminal history stays in your browser.",
+  description: "Privacy notes for the pdev-labs portfolio: local-only storage by default, optional anonymous analytics with opt-in.",
 };
 
 export default function Privacy() {
@@ -10,11 +10,12 @@ export default function Privacy() {
     <main id="main" className="wrap" style={{ padding: "64px 22px", maxWidth: 760 }}>
       <p className="sec-label">Privacy</p>
       <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(32px,5vw,52px)", margin: "8px 0 16px", letterSpacing: "-.03em" }}>
-        No tracking, no cookies.
+        Minimal tracking, your call.
       </h1>
       <div className="prose">
-        <p>This site runs no analytics, sets no cookies, and stores nothing about you on any server.</p>
+        <p>Nothing runs unless you allow it. Storage stays local, and analytics loads only with explicit opt-in.</p>
         <ul>
+          <li><strong>Analytics is opt-in.</strong> Google Analytics with IP anonymization loads only if you tick usage analytics in the consent banner. Decline and no request ever leaves for Google.</li>
           <li><strong>Preferences stay local.</strong> Theme choice, terminal history, and font size live only in your browser&apos;s localStorage.</li>
           <li><strong>Live stats are anonymous.</strong> Star counts come from the public GitHub API; no identifier is sent or stored.</li>
           <li><strong>Outbound links leave this site.</strong> GitHub, Instagram, and your email client apply their own policies once you click through.</li>
