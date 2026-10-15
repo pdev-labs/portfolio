@@ -146,7 +146,7 @@ export const EXPERIENCE = [
   {
     role: "Systems & automation tools",
     org: "Termux · CI · desktop utilities",
-    period: "Jul — Aug 2026",
+    period: "Jul 2026 — Aug 2026",
     points: ["Linux-on-Android track: ubuntu-for-termux, Arch installer configs, dynamic boot manager work.", "Actions RDP lab: GUI desktops inside GitHub Actions runners for app testing across Linux, Windows, macOS.", "Controller (phone as gamepad/trackpad over Wi-Fi, active through Sep) plus media utilities later folded into FluxMedia."],
   },
   {
