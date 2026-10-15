@@ -34,7 +34,13 @@ export default function HeroScene() {
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
-    const gl = canvas.getContext("webgl", { alpha: true, antialias: false });
+    const gl = canvas.getContext("webgl", {
+      alpha: true,
+      antialias: false,
+      desynchronized: true,
+      powerPreference: "low-power",
+      preserveDrawingBuffer: false,
+    });
     if (!gl) return;
 
     const compile = (type: number, src: string) => {
@@ -106,7 +112,7 @@ export default function HeroScene() {
     };
     let lastFrame = 0;
     const loop = (t: number) => {
-      if (visible && !document.hidden && t - lastFrame > 33) { lastFrame = t; draw(t); }
+      if (visible && !document.hidden && t - lastFrame > 50) { lastFrame = t; draw(t); }
       raf = requestAnimationFrame(loop);
     };
     if (calm) {
