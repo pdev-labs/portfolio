@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { FAQS } from "../components/Faq";
-import Analytics from "../components/Analytics";
 
 const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-display", display: "swap" });
 const body = Space_Grotesk({ subsets: ["latin"], variable: "--font-body", display: "swap" });
@@ -79,7 +78,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <a className="skip" href="#main">Skip to content</a>
         {children}
-        <Analytics />
       </body>
     </html>
   );
