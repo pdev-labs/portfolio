@@ -48,13 +48,18 @@ function dropFirstH1(md: string): string {
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const slug = params.slug.toLowerCase();
   const doc = DOCS.find(d => d.slug === slug);
-  if (doc) return { title: `${doc.title} — pdev-labs docs`, description: doc.summary };
+  if (doc) return {
+    title: `${doc.title} — pdev-labs docs`,
+    description: doc.summary,
+    alternates: { canonical: `https://docs.pdevlabs.me/${doc.slug}` },
+  };
   const repos = await getRepos();
   const repo = repos.find(r => r.slug === slug);
   if (!repo) return { title: "Not found — pdev-labs docs" };
   return {
     title: `${repo.name} — pdev-labs docs`,
     description: repo.description || `Docs and files for ${repo.name}.`,
+    alternates: { canonical: `https://docs.pdevlabs.me/${repo.slug}` },
   };
 }
 

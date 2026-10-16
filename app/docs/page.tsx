@@ -6,6 +6,7 @@ import { getRepos } from "../../lib/github";
 export const metadata: Metadata = {
   title: "Docs — pdev-labs",
   description: "Install guides and usage notes for pdev-labs open-source projects.",
+  alternates: { canonical: "https://docs.pdevlabs.me" },
 };
 
 export default async function DocsIndex() {

@@ -37,6 +37,13 @@ export async function middleware(req: NextRequest) {
   if (pathname.startsWith("/_next") || pathname === "/favicon.svg") return NextResponse.next();
 
   const host = hostOf(req);
+  const isMain = host === "www.pdevlabs.me" || host === "pdevlabs.me";
+  if (isMain && (pathname === "/docs" || pathname.startsWith("/docs/"))) {
+    const url = req.nextUrl.clone();
+    url.protocol = "https:";
+    url.host = "docs.pdevlabs.me";
+    return NextResponse.redirect(url, 308);
+  }
   if (host === "go.pdevlabs.me") {
     const slug = pathname.replace(/^\/+|\/+$/g, "").toLowerCase();
     const target = GO_LINKS[slug];
