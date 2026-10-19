@@ -12,30 +12,46 @@ export default function Expertise() {
         <div>
           <p className="sec-label">Expertise</p>
           <h2>Depth where it counts.</h2>
-          <p>Four areas I can contribute to on day one — pick one to filter the work below.</p>
+          <p>Four areas I can contribute to on day one — pick a row to filter the work below.</p>
         </div>
       </div>
-      <div className="exp-grid">
+
+      <div className="exp-table reveal" role="table" aria-label="Skill areas">
+        <div className="exp-tr exp-th" role="row">
+          <span role="columnheader">area</span>
+          <span role="columnheader">level</span>
+          <span role="columnheader">focus</span>
+          <span role="columnheader">in action</span>
+        </div>
+
         {SKILLS.map((s) => (
-          <article className={`exp-card reveal${active === s.filter ? " exp-active" : ""}`} key={s.group}>
-            <div className="exp-head">
-              <span className={`exp-icon exp-icon-${s.icon}`} aria-hidden="true">{SKILL_ICONS[s.icon]}</span>
-              <div>
-                <h3>{s.group}</h3>
-                <p className="exp-meter" role="img" aria-label={`${s.level}: ${s.meter} of 5`}>
-                  <span className="level">{s.level}</span>
-                  <span className="meter" aria-hidden="true">
-                    {[1, 2, 3, 4, 5].map(i => <i key={i} className={i <= s.meter ? "on" : undefined} />)}
-                  </span>
-                </p>
-              </div>
+          <div
+            className={`exp-tr${active === s.filter ? " is-active" : ""}`}
+            role="row"
+            key={s.group}
+          >
+            <div className="exp-td exp-area" role="cell">
+              <span className={`exp-tile exp-tile-${s.icon}`} aria-hidden="true">{SKILL_ICONS[s.icon]}</span>
+              <span className="exp-name">{s.group}</span>
             </div>
-            <ul>{s.items.map(i => <li key={i}>{i}</li>)}</ul>
-            <div className="exp-foot">
-              <a href={s.proof.url} target="_blank" rel="noreferrer">In action: {s.proof.label} ↗</a>
-              <a href="#work" data-filter={s.filter} aria-label={`Filter work by ${s.filter}`}>Work ↓</a>
+
+            <div className="exp-td exp-metric" role="cell">
+              <span className="level">{s.level}</span>
+              <span className="meter" aria-hidden="true">
+                {[1, 2, 3, 4, 5].map(i => <i key={i} className={i <= s.meter ? "on" : undefined} />)}
+              </span>
+              <span className="sr-only">{s.level} — {s.meter} of 5</span>
             </div>
-          </article>
+
+            <div className="exp-td exp-focus" role="cell">
+              {s.items.map(i => <span className="exp-tag" key={i}>{i}</span>)}
+            </div>
+
+            <div className="exp-td exp-proof" role="cell">
+              <a href={s.proof.url} target="_blank" rel="noreferrer">{s.proof.label} ↗</a>
+              <a className="exp-filter" href="#work" data-filter={s.filter}>filter work ↓</a>
+            </div>
+          </div>
         ))}
       </div>
     </div>
