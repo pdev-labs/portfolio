@@ -578,9 +578,12 @@ html.has-cursor,html.has-cursor *{cursor:none !important}
 [data-theme="dark"] .atmos-grain{opacity:.06}
 [data-theme="dark"] .atmos-vignette{background:radial-gradient(130% 105% at 50% 0%,transparent 50%,rgba(0,0,0,.5) 100%)}
 
-/* ---------- richer reveal: rise + settle ---------- */
-.reveal{opacity:0;transform:translateY(20px) scale(.992);filter:blur(6px);transition:opacity .8s ease,transform 1s var(--ease-out),filter .7s ease}
-.reveal[data-in="true"]{opacity:1;transform:none;filter:none}
+/* ---------- richer reveal: rise + settle ----------
+   Hidden state is scoped to .motion-on (set by JS before paint) so content is
+   never hidden without motion: no-JS and reduced-motion users see it plainly. */
+.reveal{transition:opacity .8s ease,transform 1s var(--ease-out)}
+.motion-on .reveal{opacity:0;transform:translateY(20px)}
+.motion-on .reveal[data-in="true"]{opacity:1;transform:none}
 
 /* ---------- featured work: tilt + glow ---------- */
 .feat{transition:transform .25s ease-out,box-shadow .4s ease,border-color .4s ease;will-change:transform}
@@ -895,3 +898,5 @@ html.lenis,html.lenis body{height:auto}
 [data-theme="dark"] .contact-form input::placeholder,[data-theme="dark"] .contact-form textarea::placeholder{color:#5d6a68}
 [data-theme="dark"] .contact-form label{color:var(--ink-soft)}
 [data-theme="dark"] .lab-interactive{height:370px}
+[data-theme="dark"] .j-side p{color:var(--ink-soft)}
+[data-theme="dark"] .contact-list{color:var(--ink-soft)}

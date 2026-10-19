@@ -1,5 +1,4 @@
 import Nav from "../components/Nav";
-import Reveal from "../components/Reveal";
 import SpringScroll from "../components/SpringScroll";
 import ScrollProgress from "../components/ScrollProgress";
 import Effects from "../components/Effects";
@@ -54,7 +53,6 @@ export default async function Page() {
         <section aria-label="Contact"><Contact /></section>
       </main>
       <Footer />
-      <Reveal />
       <SpringScroll />
       <Effects />
       <Motion />
