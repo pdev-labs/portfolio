@@ -101,6 +101,33 @@ export default function Effects() {
     return () => { clean.forEach(f => f()); window.removeEventListener("scroll", onScroll); };
   }, []);
 
+  useEffect(() => {
+    if (!FINE() || CALM()) return;
+    // 3D tilt on featured work cards (delegated, so React re-renders don't detach it)
+    let cur: HTMLElement | null = null;
+    let raf = 0;
+    const reset = () => { if (cur) cur.style.transform = ""; cur = null; };
+    const onMove = (e: PointerEvent) => {
+      const card = (e.target as HTMLElement).closest(".feat") as HTMLElement | null;
+      if (card !== cur) { reset(); cur = card; }
+      if (!card) return;
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        card.style.transform = `perspective(900px) rotateY(${(px * 5).toFixed(2)}deg) rotateX(${(-py * 5).toFixed(2)}deg) translateY(-4px)`;
+      });
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    document.documentElement.addEventListener("pointerleave", reset);
+    return () => {
+      reset(); cancelAnimationFrame(raf);
+      window.removeEventListener("pointermove", onMove);
+      document.documentElement.removeEventListener("pointerleave", reset);
+    };
+  }, []);
+
   return (<>
     <div ref={dot} className="cursor-dot" aria-hidden="true" />
     <div ref={ring} className="cursor-ring" aria-hidden="true" />

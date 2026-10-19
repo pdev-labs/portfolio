@@ -4,6 +4,8 @@ import SpringScroll from "../components/SpringScroll";
 import ScrollProgress from "../components/ScrollProgress";
 import Effects from "../components/Effects";
 import HeroScene from "../components/HeroScene";
+import HeroVideo from "../components/HeroVideo";
+import Atmos from "../components/Atmos";
 import Expertise from "../components/Expertise";
 import Experience from "../components/Experience";
 import WorkExplorer from "../components/WorkExplorer";
@@ -22,7 +24,7 @@ export default async function Page() {
       <ScrollProgress />
       <Nav />
       <main id="main">
-        <section className="hero" aria-label="Introduction"><HeroScene /><Hero /></section>
+        <section className="hero" aria-label="Introduction"><HeroVideo /><HeroScene /><Hero /></section>
         <CredibilityBar />
         <section id="about" aria-label="About"><About /></section>
         <section id="expertise" aria-label="Expertise" style={{ paddingTop: 0 }}><Expertise /></section>
@@ -38,6 +40,7 @@ export default async function Page() {
       <Reveal />
       <SpringScroll />
       <Effects />
+      <Atmos />
       <Toasts />
       <BackToTop />
       <CommandPalette />

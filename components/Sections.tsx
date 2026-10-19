@@ -1,5 +1,7 @@
 import LabConsole from "./LabConsole";
 import ContactForm from "./ContactForm";
+import HeroTitle from "./HeroTitle";
+import CountUp from "./CountUp";
 import { JOURNEY, SERVICES, PROCESS, PROFILE } from "../data/site";
 
 export function Hero() {
@@ -8,7 +10,7 @@ export function Hero() {
       <div>
         <span className="kicker"><span className="dot" aria-hidden="true" />{PROFILE.availability}</span>
         <p className="hero-eyebrow">{PROFILE.role} · {PROFILE.location}</p>
-        <h1>Practical systems software, documented and maintained.</h1>
+        <HeroTitle text="Practical systems software, documented and maintained." />
         <p className="hero-sub"><strong>{PROFILE.tagline}</strong> {PROFILE.bio}</p>
         <div className="hero-cta">
           <a className="btn btn-primary" href="#work">View selected work</a>
@@ -60,9 +62,9 @@ export function About() {
           <h3>What I do</h3>
           <p>I design small tools that remove real friction — installing Linux on a phone, sharing media over LAN, documenting a setup so it works the second time. Shell for OS glue, Python for delivery speed, C/C++ where hardware requires it.</p>
           <div className="stat-row">
-            <div className="stat"><b>21</b><span>public repositories</span></div>
-            <div className="stat"><b>4</b><span>core domains</span></div>
-            <div className="stat"><b>100%</b><span>with READMEs</span></div>
+            <div className="stat"><CountUp to={21} /><span>public repositories</span></div>
+            <div className="stat"><CountUp to={4} /><span>core domains</span></div>
+            <div className="stat"><CountUp to={100} suffix="%" /><span>with READMEs</span></div>
           </div>
         </div>
         <div className="card reveal">
