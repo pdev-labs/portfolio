@@ -71,6 +71,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <script
           dangerouslySetInnerHTML={{
+            __html: `(function(){try{if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;document.documentElement.classList.add("motion-on");try{if(!sessionStorage.getItem("pdev-intro")){document.documentElement.classList.add("pre-show");sessionStorage.setItem("pdev-intro","1");}}catch(e){}}catch(e){}})();`,
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
             __html: `(function(){try{var c={};try{c=JSON.parse(localStorage.getItem("pdev-consent")||"{}")}catch(e){};var ok=c&&c.decided&&c.preferences;var t=ok?(localStorage.getItem("pdev-theme")||"dark"):"dark";var d=t==="system"?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):t;document.documentElement.dataset.theme=d;document.documentElement.style.colorScheme=d;}catch(e){}})();`,
           }}
         />

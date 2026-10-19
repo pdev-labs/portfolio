@@ -17,6 +17,8 @@ export default function SpringScroll() {
       e.preventDefault();
       const top = target.getBoundingClientRect().top + window.scrollY - 76; // sticky nav offset
       try { history.pushState(null, "", id); } catch { /* ignore */ }
+      const lenis = (window as unknown as { __lenis?: { scrollTo: (t: number, o?: { duration?: number }) => void } }).__lenis;
+      if (lenis) { lenis.scrollTo(top, { duration: 1.1 }); return; }
       cancel = springScrollTo(top);
     };
 

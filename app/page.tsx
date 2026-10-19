@@ -7,6 +7,9 @@ import HeroScene from "../components/HeroScene";
 import HeroVideo from "../components/HeroVideo";
 import Atmos from "../components/Atmos";
 import Plate from "../components/Plate";
+import Motion from "../components/Motion";
+import Marquee from "../components/Marquee";
+import Preloader from "../components/Preloader";
 import Expertise from "../components/Expertise";
 import Experience from "../components/Experience";
 import WorkExplorer from "../components/WorkExplorer";
@@ -22,14 +25,16 @@ export default async function Page() {
   const exp = await getExperience();
   return (
     <>
+      <Preloader />
       <ScrollProgress />
       <Nav />
       <main id="main">
         <section className="hero" aria-label="Introduction"><HeroVideo /><HeroScene /><Hero /></section>
+        <Marquee items={["Linux on Android", "ESP32 firmware", "Python tooling", "LAN media", "Browser extensions", "Systems software"]} />
         <CredibilityBar />
         <section id="about" className="cine" aria-label="About"><Plate src="/media/plates/about.webp" opacity={0.6} /><About /></section>
-        <section id="expertise" className="cine" aria-label="Expertise"><Plate src="/media/plates/expertise.webp" opacity={0.42} parallax={22} /><Expertise /></section>
-        <section id="work" className="cine" aria-label="Selected work"><Plate src="/media/plates/work.webp" opacity={0.38} parallax={22} /><WorkExplorer /></section>
+        <section id="expertise" className="cine" aria-label="Expertise"><Plate src="/media/plates/expertise.webp" opacity={0.42} /><Expertise /></section>
+        <section id="work" className="cine" aria-label="Selected work"><Plate src="/media/plates/work.webp" opacity={0.38} /><WorkExplorer /></section>
         <section id="experience" className="cine" aria-label="Experience"><Plate src="/media/plates/experience.webp" opacity={0.4} /><Experience overview={exp.overview} months={exp.months} /></section>
         <section className="cine" aria-label="Services"><Plate src="/media/plates/services.webp" opacity={0.38} /><Services /></section>
         <section className="cine" aria-label="Process"><Plate src="/media/plates/process.webp" opacity={0.38} /><Process /></section>
@@ -41,6 +46,7 @@ export default async function Page() {
       <Reveal />
       <SpringScroll />
       <Effects />
+      <Motion />
       <Atmos />
       <Toasts />
       <BackToTop />

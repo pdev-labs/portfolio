@@ -611,9 +611,7 @@ html.has-cursor,html.has-cursor *{cursor:none !important}
 .cine{position:relative;overflow:clip;isolation:isolate}
 .cine > .wrap{position:relative;z-index:1}
 .plate{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-.plate > img{position:absolute;left:-6%;top:-6%;width:112%;height:112%;object-fit:cover;
-  transform:translate3d(0,var(--plate-shift,0),0) scale(1.08);
-  animation:plateKB 30s ease-in-out infinite alternate;will-change:transform}
+.plate > img{position:absolute;left:-6%;top:-6%;width:112%;height:112%;object-fit:cover;transform:scale(1.08);will-change:transform}
 @keyframes plateKB{
   from{transform:translate3d(0,var(--plate-shift,0),0) scale(1.08)}
   to{transform:translate3d(0,var(--plate-shift,0),0) scale(1.2)}
@@ -638,4 +636,56 @@ html.has-cursor,html.has-cursor *{cursor:none !important}
   .plate > img,.media.kb > img{animation:none;transform:none}
   .media > img{transition:none}
   .exp-card:hover .media > img,.feat:hover .media > img{transform:none}
+}
+
+/* ============================================================
+   CINEMATIC PASS 3 — motion system (GSAP + Lenis)
+   ============================================================ */
+/* Lenis base */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto !important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+
+/* when motion is on, JS owns reveals + headline; kill the CSS versions */
+.motion-on .reveal{transition:none}
+.motion-on .hero-title .hw-in{animation:none;transform:none}
+.motion-on .plate > img{animation:none}
+
+/* masked word reveal */
+.mword{display:inline-block;overflow:hidden;vertical-align:bottom;margin-right:.26em;padding-bottom:.08em}
+.mword-in{display:inline-block;will-change:transform}
+
+/* ---------- marquee band ---------- */
+.marquee{position:relative;overflow:hidden;border-bottom:1px solid var(--line);
+  background:color-mix(in srgb,var(--card) 55%,transparent);padding:16px 0;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee-track{display:flex;width:max-content;animation:marquee 26s linear infinite}
+.marquee-item{display:inline-flex;align-items:center;gap:22px;padding:0 22px;white-space:nowrap;
+  font-family:var(--font-display);font-weight:700;letter-spacing:-.02em;
+  font-size:clamp(18px,2.6vw,32px);color:var(--ink)}
+.marquee-dot{width:8px;height:8px;border-radius:50%;background:var(--signal);flex:none}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.marquee:hover .marquee-track{animation-play-state:paused}
+
+/* ---------- intro curtain ---------- */
+.preloader{display:none}
+.pre-show .preloader{position:fixed;inset:0;z-index:300;display:grid;place-items:center;background:#0b0813;
+  animation:preOut .9s cubic-bezier(.76,0,.24,1) 1.25s forwards}
+.pre-inner{text-align:center;padding:0 20px}
+.pre-brand{margin:0;font-family:var(--font-display);font-weight:800;letter-spacing:-.03em;
+  font-size:clamp(30px,7vw,68px);color:#efeaff}
+.pre-sub{margin:8px 0 18px;font-family:var(--font-code);font-size:12.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:#9d8cff}
+.pre-line{width:min(320px,60vw);height:2px;margin:0 auto;background:#2b2350;overflow:hidden;border-radius:2px}
+.pre-sweep{display:block;height:100%;width:40%;background:linear-gradient(90deg,var(--ultra),var(--signal));
+  animation:preSweep 1.1s cubic-bezier(.5,0,.5,1) infinite}
+@keyframes preSweep{0%{transform:translateX(-110%)}100%{transform:translateX(360%)}}
+@keyframes preOut{to{transform:translateY(-101%);visibility:hidden}}
+
+@media (prefers-reduced-motion:reduce){
+  .marquee-track,.pre-sweep{animation:none}
+  .pre-show .preloader{display:none !important}
+  .mword-in{transform:none !important}
 }

@@ -85,20 +85,7 @@ export default function Effects() {
       b.addEventListener("pointerleave", onLeave);
       clean.push(() => { b.removeEventListener("pointermove", onMove); b.removeEventListener("pointerleave", onLeave); });
     });
-    // gentle hero parallax while hero is on screen
-    const hero = document.querySelector(".hero-grid") as HTMLElement | null;
-    let ticking = false;
-    const onScroll = () => {
-      if (ticking || !hero) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        ticking = false;
-        const y = Math.min(window.scrollY, window.innerHeight);
-        hero.style.transform = y < window.innerHeight ? `translateY(${(y * 0.06).toFixed(1)}px)` : "";
-      });
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => { clean.forEach(f => f()); window.removeEventListener("scroll", onScroll); };
+    return () => { clean.forEach(f => f()); };
   }, []);
 
   useEffect(() => {
