@@ -3,13 +3,10 @@ import Reveal from "../components/Reveal";
 import SpringScroll from "../components/SpringScroll";
 import ScrollProgress from "../components/ScrollProgress";
 import Effects from "../components/Effects";
-import HeroScene from "../components/HeroScene";
-import HeroVideo from "../components/HeroVideo";
-import Atmos from "../components/Atmos";
-import Plate from "../components/Plate";
 import Motion from "../components/Motion";
 import Marquee from "../components/Marquee";
 import Preloader from "../components/Preloader";
+import LabConsole from "../components/LabConsole";
 import Expertise from "../components/Expertise";
 import Experience from "../components/Experience";
 import WorkExplorer from "../components/WorkExplorer";
@@ -29,25 +26,38 @@ export default async function Page() {
       <ScrollProgress />
       <Nav />
       <main id="main">
-        <section className="hero" aria-label="Introduction"><HeroVideo /><HeroScene /><Hero /></section>
+        <section className="hero" aria-label="Introduction"><Hero /></section>
         <Marquee items={["Linux on Android", "ESP32 firmware", "Python tooling", "LAN media", "Browser extensions", "Systems software"]} />
+
+        <section className="term-band" aria-label="Interactive shell">
+          <div className="wrap">
+            <div className="sec-head reveal">
+              <div>
+                <p className="sec-label">shell</p>
+                <h2>Try the toolkit.</h2>
+                <p>A working shell in the browser — 28 commands, history, tab-complete.</p>
+              </div>
+            </div>
+            <LabConsole />
+          </div>
+        </section>
+
         <CredibilityBar />
-        <section id="about" className="cine" aria-label="About"><Plate src="/media/plates/about.webp" opacity={0.6} /><About /></section>
-        <section id="expertise" className="cine" aria-label="Expertise"><Plate src="/media/plates/expertise.webp" opacity={0.42} /><Expertise /></section>
-        <section id="work" className="cine" aria-label="Selected work"><Plate src="/media/plates/work.webp" opacity={0.38} /><WorkExplorer /></section>
-        <section id="experience" className="cine" aria-label="Experience"><Plate src="/media/plates/experience.webp" opacity={0.4} /><Experience overview={exp.overview} months={exp.months} /></section>
-        <section className="cine" aria-label="Services"><Plate src="/media/plates/services.webp" opacity={0.38} /><Services /></section>
-        <section className="cine" aria-label="Process"><Plate src="/media/plates/process.webp" opacity={0.38} /><Process /></section>
-        <section className="cine" aria-label="Background"><Plate src="/media/plates/journey.webp" opacity={0.4} /><Journey /></section>
+        <section id="about" aria-label="About"><About /></section>
+        <section id="expertise" aria-label="Expertise"><Expertise /></section>
+        <section id="work" aria-label="Selected work"><WorkExplorer /></section>
+        <section id="experience" aria-label="Experience"><Experience overview={exp.overview} months={exp.months} /></section>
+        <section aria-label="Services"><Services /></section>
+        <section aria-label="Process"><Process /></section>
+        <section aria-label="Background"><Journey /></section>
         <section aria-label="Frequently asked questions"><Faq /></section>
-        <section className="cine" aria-label="Contact"><Plate src="/media/plates/contact.webp" opacity={0.5} /><Contact /></section>
+        <section aria-label="Contact"><Contact /></section>
       </main>
       <Footer />
       <Reveal />
       <SpringScroll />
       <Effects />
       <Motion />
-      <Atmos />
       <Toasts />
       <BackToTop />
       <CommandPalette />

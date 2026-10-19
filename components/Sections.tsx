@@ -1,31 +1,28 @@
-import LabConsole from "./LabConsole";
 import ContactForm from "./ContactForm";
-import HeroTitle from "./HeroTitle";
 import CountUp from "./CountUp";
+import Wordmark from "./Wordmark";
 import { JOURNEY, SERVICES, PROCESS, PROFILE } from "../data/site";
 
 export function Hero() {
   return (
-    <div className="wrap hero-grid" id="top">
-      <div>
-        <span className="kicker"><span className="dot" aria-hidden="true" />{PROFILE.availability}</span>
-        <p className="hero-eyebrow">{PROFILE.role} · {PROFILE.location}</p>
-        <HeroTitle text="Practical systems software, documented and maintained." />
-        <p className="hero-sub"><strong>{PROFILE.tagline}</strong> {PROFILE.bio}</p>
-        <div className="hero-cta">
-          <a className="btn btn-primary" href="#work">View selected work</a>
-          <a className="btn btn-ghost" href="https://github.com/pdev-labs?tab=repositories" target="_blank" rel="noreferrer">GitHub · 21 repositories ↗</a>
-        </div>
-        <dl className="hero-meta">
-          <div><dt>Repositories</dt><dd><strong>21</strong> public</dd></div>
-          <div><dt>Focus</dt><dd><strong>Linux</strong> · Embedded · Python</dd></div>
-          <div><dt>Response</dt><dd><strong>48h</strong> via GitHub</dd></div>
-        </dl>
+    <div className="wrap hero-inner" id="top">
+      <a className="pill" href="#work">
+        <span className="pill-dot" aria-hidden="true" />
+        {PROFILE.availability}
+        <span className="pill-arrow" aria-hidden="true">→</span>
+      </a>
+      <Wordmark text="PDEV-LABS" />
+      <p className="hero-tag">{PROFILE.tagline}</p>
+      <p className="hero-lede">{PROFILE.bio}</p>
+      <div className="hero-cta">
+        <a className="btn btn-primary" href="#work">View selected work</a>
+        <a className="btn btn-ghost" href="https://github.com/pdev-labs?tab=repositories" target="_blank" rel="noreferrer">GitHub · 21 repos ↗</a>
       </div>
-      <div>
-        <LabConsole />
-        <p className="lab-caption">Featured: <strong>Lazy-ESP32</strong> — zero-config ESP32 flash toolkit. <a href="https://github.com/pdev-labs/Lazy-ESP32" target="_blank" rel="noreferrer">Read the source ↗</a></p>
-      </div>
+      <dl className="hero-stats">
+        <div className="hs"><b>21</b><span>public repos</span></div>
+        <div className="hs"><b>4</b><span>core domains</span></div>
+        <div className="hs"><b>48h</b><span>reply time</span></div>
+      </dl>
     </div>
   );
 }

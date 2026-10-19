@@ -38,7 +38,10 @@ const COMMANDS = [
 ];
 
 const BOOT: Line[] = [
-  { html: `<span class="t-cm">pdev-lab terminal · type "help"</span>` },
+  { html: `<span class="t-cm">pdev-lab · container ready · utf-8</span>` },
+  { html: `<span class="t-kw">✓</span> 21 repositories indexed` },
+  { html: `<span class="t-kw">✓</span> github.com/pdev-labs connected` },
+  { html: `<span class="t-cm">type "help" for commands · "projects" for the index</span>` },
 ];
 
 const HELP = [
