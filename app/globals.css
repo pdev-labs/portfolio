@@ -900,3 +900,24 @@ html.lenis,html.lenis body{height:auto}
 [data-theme="dark"] .lab-interactive{height:370px}
 [data-theme="dark"] .j-side p{color:var(--ink-soft)}
 [data-theme="dark"] .contact-list{color:var(--ink-soft)}
+
+/* ---------- expertise cards: match the reference precisely ---------- */
+[data-theme="dark"] .exp-grid{gap:16px}
+[data-theme="dark"] .exp-card{
+  border-radius:10px;padding:22px;background:#15191a;border-color:#2a3132;border-top:1px solid #2a3132}
+[data-theme="dark"] .exp-head{gap:16px;margin-bottom:10px;align-items:flex-start}
+[data-theme="dark"] .exp-card h3{font-size:19px;line-height:1.25}
+[data-theme="dark"] .exp-icon{
+  width:44px;height:44px;border-radius:10px;background:#1a1f20;border:1px solid #2a3132;color:var(--ultra)}
+[data-theme="dark"] .exp-icon svg{width:22px;height:22px}
+[data-theme="dark"] .exp-meter{gap:8px;margin:6px 0 0}
+[data-theme="dark"] .level{
+  font-size:12.5px;font-weight:700;border-radius:4px;padding:3px 10px;
+  background:transparent;border:1px solid #2a3132;color:var(--ink-soft)}
+[data-theme="dark"] .meter i{width:15px;height:6px;border-radius:3px;background:#2a3132}
+[data-theme="dark"] .meter i.on{background:var(--ultra)}
+[data-theme="dark"] .exp-card ul{font-size:14.5px}
+[data-theme="dark"] .exp-card li{padding:4px 0;border-top:1px solid #242a2b}
+[data-theme="dark"] .exp-foot{padding-top:14px;margin-top:14px;gap:7px;font-size:13px;border-top:0}
+[data-theme="dark"] .exp-foot a{color:var(--ultra)}
+[data-theme="dark"] .exp-foot a:last-child{font-size:13px;opacity:1}
