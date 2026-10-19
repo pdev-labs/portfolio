@@ -961,3 +961,12 @@ html.lenis,html.lenis body{height:auto}
   [data-theme="dark"] .exp-th{display:none}
   [data-theme="dark"] .exp-table{border-radius:10px}
 }
+
+/* expertise table: keep chip + meter on one line */
+[data-theme="dark"] .exp-tr{
+  grid-template-columns:minmax(180px,1.02fr) minmax(196px,.86fr) minmax(0,2.05fr) minmax(158px,.9fr)}
+[data-theme="dark"] .exp-metric{flex-wrap:nowrap;gap:10px}
+[data-theme="dark"] .exp-table .meter i{width:12px;height:6px}
+[data-theme="dark"] .exp-tr{gap:20px}
+[data-theme="dark"] .exp-focus{gap:5px}
+[data-theme="dark"] .exp-tag{font-size:12px;padding:2px 7px}
