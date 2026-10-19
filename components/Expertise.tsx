@@ -2,6 +2,9 @@
 import { SKILLS } from "../data/site";
 import { SKILL_ICONS } from "./skillIcons";
 import { useWorkFilter } from "./workFilter";
+import Media from "./Media";
+
+const EXP_MEDIA = ["exp-systems", "exp-embedded", "exp-python", "exp-web"];
 
 export default function Expertise() {
   const active = useWorkFilter();
@@ -16,7 +19,7 @@ export default function Expertise() {
         </div>
       </div>
       <div className="exp-grid">
-        {SKILLS.map(s => (
+        {SKILLS.map((s, i) => (
           <article className={`exp-card reveal${active === s.filter ? " exp-active" : ""}`} key={s.group}>
             <div className="exp-head">
               <span className={`exp-icon exp-icon-${s.icon}`} aria-hidden="true">{SKILL_ICONS[s.icon]}</span>
@@ -30,6 +33,7 @@ export default function Expertise() {
                 </p>
               </div>
             </div>
+            <Media src={`/media/plates/${EXP_MEDIA[i] ?? EXP_MEDIA[0]}.webp`} ratio="16 / 9" />
             <ul>{s.items.map(i => <li key={i}>{i}</li>)}</ul>
             <div className="exp-foot">
               <a href={s.proof.url} target="_blank" rel="noreferrer">In action: {s.proof.label} ↗</a>

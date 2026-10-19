@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { PROJECTS, type Project } from "../data/site";
 import { setWorkFilter, useWorkFilter } from "./workFilter";
 import { copyText } from "./Toast";
+import Media from "./Media";
 
 const FILTERS = ["All", "Python", "Shell", "JavaScript", "C/C++", "ESP32", "Linux"];
 
@@ -117,6 +118,7 @@ export default function WorkExplorer() {
         <div className="feat-grid" key={`f-${filter}`}>
           {feats.map(p => (
             <article className="feat work-anim" key={p.slug}>
+              <Media src={`/media/plates/work-${p.slug}.webp`} ratio="16 / 10" className="kb" />
               <div className="feat-head"><span className="chip lang">{p.language}</span><span className="status">{p.status}</span></div>
               <h3><a href={p.url} target="_blank" rel="noreferrer">{p.title} ↗</a></h3>
               <p>{p.blurb}</p>

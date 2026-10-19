@@ -11,7 +11,7 @@ const LABEL: Record<SiteTheme, string> = {
 const ICON: Record<SiteTheme, string> = { system: "◐", light: "☀", dark: "☾" };
 
 export default function ThemeToggle() {
-  const [mode, setMode] = useState<SiteTheme>("system");
+  const [mode, setMode] = useState<SiteTheme>("dark");
 
   useEffect(() => {
     setMode(storedTheme());

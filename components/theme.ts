@@ -4,10 +4,10 @@ export type SiteTheme = "light" | "dark" | "system";
 const KEY = "pdev-theme";
 
 export function storedTheme(): SiteTheme {
-  if (typeof window === "undefined") return "system";
+  if (typeof window === "undefined") return "dark";
   const v = storeGet("preferences", KEY);
   if (v === "light" || v === "dark" || v === "system") return v;
-  return "system";
+  return "dark";
 }
 
 export function resolvedTheme(t: SiteTheme): "light" | "dark" {

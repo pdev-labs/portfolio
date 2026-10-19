@@ -604,3 +604,38 @@ html.has-cursor,html.has-cursor *{cursor:none !important}
   .hero::after{height:110px}
   .atmos-grain{opacity:.035}
 }
+
+/* ============================================================
+   CINEMATIC PASS 2 — image plates, parallax, card media
+   ============================================================ */
+.cine{position:relative;overflow:clip;isolation:isolate}
+.cine > .wrap{position:relative;z-index:1}
+.plate{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.plate > img{position:absolute;left:-6%;top:-6%;width:112%;height:112%;object-fit:cover;
+  transform:translate3d(0,var(--plate-shift,0),0) scale(1.08);
+  animation:plateKB 30s ease-in-out infinite alternate;will-change:transform}
+@keyframes plateKB{
+  from{transform:translate3d(0,var(--plate-shift,0),0) scale(1.08)}
+  to{transform:translate3d(0,var(--plate-shift,0),0) scale(1.2)}
+}
+.plate::after{content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,var(--paper) 0%,transparent 16%,transparent 84%,var(--paper) 100%),
+    radial-gradient(85% 65% at 50% 45%,transparent 28%,color-mix(in srgb,var(--paper) 72%,transparent) 100%)}
+/* keep section rhythm when a plate is present */
+.cine{padding-top:72px;padding-bottom:72px}
+
+/* card / feature media */
+.media{position:relative;overflow:hidden;border-radius:12px;background:#0d0a16;border:1px solid var(--line);isolation:isolate}
+.media > img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(13,10,22,.55))}
+.feat .media{margin:-6px -6px 4px}
+.exp-card .media{margin:2px 0 10px}
+.exp-card:hover .media > img,.feat:hover .media > img{transform:scale(1.09)}
+.media.kb > img{animation:plateKB 24s ease-in-out infinite alternate}
+
+@media (prefers-reduced-motion:reduce){
+  .plate > img,.media.kb > img{animation:none;transform:none}
+  .media > img{transition:none}
+  .exp-card:hover .media > img,.feat:hover .media > img{transform:none}
+}
